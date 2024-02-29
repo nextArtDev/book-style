@@ -93,6 +93,7 @@ model Image {
   // Illustrator  Illustrator[]
   // Photographer Photographer[]
   Contributor Contributor[]
+  Store       Store[]
 
   @@index([productId])
 }
@@ -107,6 +108,7 @@ model Store {
   orders       Order[]       @relation("StoreToOrder")
   contributors Contributor[] @relation("StoreToContributor")
   reviews      Review[]      @relation("StoreToReview")
+  imagges      Image[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -148,7 +150,7 @@ model Category {
 
 model Product {
   id            String    @id @default(uuid())
-  isbn          String?
+  isbn          String
   title         String
   subTitle      String?
   originalTitle String?
@@ -158,6 +160,7 @@ model Product {
   isArchived    Boolean   @default(false)
   size          String?
   publishDate   DateTime?
+  publisher     String?
   pages         String?
   weight        String?
   cover         String?
@@ -297,7 +300,7 @@ model Review {
 model Order {
   id         String      @id @default(uuid())
   storeId    String
-  Authority  String?     @unique @db.Text
+  Authority  String      @unique @db.Text
   RefID      Int?
   store      Store       @relation("StoreToOrder", fields: [storeId], references: [id])
   orderItems OrderItem[]
