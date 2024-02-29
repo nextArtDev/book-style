@@ -155,7 +155,7 @@ model Product {
   subTitle      String?
   originalTitle String?
   description   String?   @db.Text
-  price         Decimal?
+  price         Decimal
   isFeatured    Boolean   @default(false)
   isArchived    Boolean   @default(false)
   size          String?
