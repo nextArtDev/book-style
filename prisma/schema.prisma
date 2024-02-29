@@ -1,0 +1,404 @@
+generator client {
+  provider = "prisma-client-js"
+  // previewFeatures = ["multiSchema"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  // directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id         String  @id @default(cuid())
+  phone      String  @unique
+  name       String
+  password   String
+  image      Image?  @relation(fields: [imageId], references: [id])
+  role       Role    @default(USER)
+  isVerified Boolean @default(false)
+
+  verificationCode Int?
+  verificationDate DateTime?
+
+  Reviews Review[]
+
+  bio              String?
+  location         String?
+  portfolioWebsite String?
+  reputation       Int     @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  imageId   String?
+
+  saved              Question[] @relation("UserWhoSaved")
+  upvotedQuestions   Question[] @relation("UpvotedQuestions")
+  downvotedQuestions Question[] @relation("DownvotedQuestions")
+  authoredQuestions  Question[] @relation("QuestionAuthor")
+
+  upvotedAnswers   Answer[]      @relation("UpvotedAnswers")
+  downvotedAnswers Answer[]      @relation("DownvotedAnswers")
+  authoredAnswers  Answer[]      @relation("AnswerAuthor")
+  Tag              Tag[]
+  Interaction      Interaction[]
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum BookSize {
+  Roghei
+  Kheshti
+  Rahli
+  Vaziri
+  Soltani
+  Gibi
+  Paltoei
+  Hamayeli
+  Janamazi
+  Beyazee
+}
+
+enum BookCover {
+  Shomiz
+  Kaghazi
+  Galingor
+  Sakht
+  Narm
+  Ghalaf
+  Zarrin
+  Makhmal
+  Cherm
+  Parcheh
+}
+
+model Image {
+  id         String   @id @default(cuid())
+  url        String   @db.Text
+  key        String   @unique @db.Text
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  User        User[]
+  Product     Product?      @relation(fields: [productId], references: [id])
+  productId   String?
+  Billboard   Billboard[]
+  Category    Category[]
+  // Writer       Writer[]
+  // Translator   Translator[]
+  // Editor       Editor[]
+  // Illustrator  Illustrator[]
+  // Photographer Photographer[]
+  Contributor Contributor[]
+
+  @@index([productId])
+}
+
+model Store {
+  id           String        @id @default(uuid())
+  name         String        @unique
+  userId       String
+  billboards   Billboard[]   @relation("StoreToBillboard")
+  categories   Category[]    @relation("StoreToCategory")
+  products     Product[]     @relation("StoreToProduct")
+  orders       Order[]       @relation("StoreToOrder")
+  contributors Contributor[] @relation("StoreToContributor")
+  reviews      Review[]      @relation("StoreToReview")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Billboard {
+  id         String     @id @default(uuid())
+  storeId    String
+  store      Store      @relation("StoreToBillboard", fields: [storeId], references: [id])
+  label      String
+  image      Image?     @relation(fields: [imageId], references: [id])
+  categories Category[]
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  imageId    String?
+
+  @@index([storeId])
+  @@index([imageId])
+}
+
+model Category {
+  id          String    @id @default(uuid())
+  name        String
+  description String?   @db.Text
+  image       Image?    @relation(fields: [imageId], references: [id])
+  storeId     String // Foreign Key to Store
+  store       Store     @relation("StoreToCategory", fields: [storeId], references: [id])
+  billboardId String // Foreign Key to Billboard
+  billboard   Billboard @relation(fields: [billboardId], references: [id])
+  products    Product[] @relation("CategoryToProduct")
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  imageId     String?
+
+  @@index([storeId])
+  @@index([billboardId])
+  @@index([imageId])
+}
+
+model Product {
+  id            String    @id @default(uuid())
+  isbn          String?
+  title         String
+  subTitle      String?
+  originalTitle String?
+  description   String?   @db.Text
+  price         Decimal?
+  isFeatured    Boolean   @default(false)
+  isArchived    Boolean   @default(false)
+  size          String?
+  publishDate   DateTime?
+  pages         String?
+  weight        String?
+  cover         String?
+  edition       String?
+  printSeries   String?
+  summary       String?   @db.Text
+  images        Image[] // Relation to Image model
+
+  Reviews Review[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  store      Store    @relation("StoreToProduct", fields: [storeId], references: [id])
+  category   Category @relation("CategoryToProduct", fields: [categoryId], references: [id])
+  storeId    String // Foreign Key to Store
+  categoryId String // Foreign Key to Category
+
+  orderItems OrderItem[] // Relation to Order model
+
+  writer       Contributor[] @relation("writer")
+  translator   Contributor[] @relation("translator")
+  editor       Contributor[] @relation("editor")
+  illustrator  Contributor[] @relation("illustrator")
+  photographer Contributor[] @relation("photographer")
+
+  @@index([storeId])
+  @@index([categoryId])
+}
+
+// enum ContributorRole {
+//   Writer
+//   Translator
+//   Editor
+//   Illustrator
+//   Photographer
+// }
+
+model Contributor {
+  id   String  @id @default(uuid())
+  name String
+  bio  String?
+
+  role String[]
+  // role ContributorRole[]
+
+  image   Image?  @relation(fields: [imageId], references: [id])
+  imageId String?
+
+  Reviews Review[]
+
+  writer       Product[] @relation("writer")
+  Translator   Product[] @relation("translator")
+  editor       Product[] @relation("editor")
+  illustrator  Product[] @relation("illustrator")
+  photographer Product[] @relation("photographer")
+
+  store   Store  @relation("StoreToContributor", fields: [storeId], references: [id])
+  storeId String
+
+  @@index([storeId])
+}
+
+model Review {
+  id Int @id @default(autoincrement())
+
+  comment String
+  rating  Int
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  storeId String
+  store   Store  @relation("StoreToReview", fields: [storeId], references: [id])
+
+  User          User?        @relation(fields: [userId], references: [id])
+  userId        String?
+  Product       Product?     @relation(fields: [productId], references: [id])
+  productId     String?
+  Contributor   Contributor? @relation(fields: [contributorId], references: [id])
+  contributorId String?
+
+  @@index([userId])
+  @@index([productId])
+  @@index([contributorId])
+}
+
+// model Writer {
+//   id      String    @id @default(uuid())
+//   name    String
+//   bio     String?
+//   image   Image?    @relation(fields: [imageId], references: [id])
+//   product Product[]
+//   imageId String?
+// }
+
+// model Translator {
+//   id    String  @id @default(uuid())
+//   name  String
+//   bio   String?
+//   image Image?  @relation(fields: [imageId], references: [id])
+
+//   product Product[]
+//   imageId String?
+// }
+
+// model Editor {
+//   id    String  @id @default(uuid())
+//   name  String
+//   bio   String?
+//   image Image?  @relation(fields: [imageId], references: [id])
+
+//   product Product[]
+//   imageId String?
+// }
+
+// model Illustrator {
+//   id    String  @id @default(uuid())
+//   name  String
+//   bio   String?
+//   image Image?  @relation(fields: [imageId], references: [id])
+
+//   product Product[]
+//   imageId String?
+// }
+
+// model Photographer {
+//   id    String  @id @default(uuid())
+//   name  String
+//   bio   String?
+//   image Image?  @relation(fields: [imageId], references: [id])
+
+//   product Product[]
+//   imageId String?
+// }
+
+model Order {
+  id         String      @id @default(uuid())
+  storeId    String
+  Authority  String?     @unique @db.Text
+  RefID      Int?
+  store      Store       @relation("StoreToOrder", fields: [storeId], references: [id])
+  orderItems OrderItem[]
+  isPaid     Boolean     @default(false)
+  phone      String      @default("")
+  address    String      @default("")
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+
+  @@index([storeId])
+}
+
+// Intermediary for a many-to-many relationship
+model OrderItem {
+  id        String  @id @default(uuid())
+  orderId   String // Foreign Key to Order
+  order     Order   @relation(fields: [orderId], references: [id])
+  productId String // Foreign Key to Product
+  product   Product @relation(fields: [productId], references: [id])
+
+  @@index([orderId])
+  @@index([productId])
+}
+
+model Question {
+  id String @id @default(uuid())
+
+  title   String
+  content String
+  views   Int    @default(0)
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  upvoters   User[] @relation("UpvotedQuestions")
+  downvoters User[] @relation("DownvotedQuestions")
+
+  author   User   @relation("QuestionAuthor", fields: [authorId], references: [id])
+  authorId String
+
+  answers Answer[]
+
+  tags Tag[]
+
+  usersWhoSaved User[] @relation("UserWhoSaved")
+
+  Interaction Interaction[]
+
+  @@index([authorId])
+}
+
+// https://www.prisma.io/docs/concepts/components/prisma-schema/relations/many-to-many-relations#mongodb
+model Answer {
+  id String @id @default(uuid())
+
+  content String
+
+  upvoters   User[]   @relation("UpvotedAnswers")
+  downvoters User[]   @relation("DownvotedAnswers")
+  author     User     @relation("AnswerAuthor", fields: [authorId], references: [id])
+  authorId   String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  Question   Question @relation(fields: [questionId], references: [id])
+  questionId String
+
+  Interaction Interaction[]
+}
+
+model Tag {
+  id Int @id @default(autoincrement())
+
+  name        String  @unique
+  description String?
+
+  questions Question[]
+
+  followers User[]
+
+  created_at    DateTime     @default(now())
+  updated_at    DateTime     @updatedAt
+  Interaction   Interaction? @relation(fields: [interactionId], references: [id])
+  interactionId Int?
+}
+
+model Interaction {
+  id   Int  @id @default(autoincrement())
+  user User @relation(fields: [userId], references: [id])
+
+  question Question @relation(fields: [questionId], references: [id])
+  answer   Answer?  @relation(fields: [answerId], references: [id])
+
+  action String
+
+  tags Tag[]
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  userId     String
+  questionId String
+  answerId   String?
+}
