@@ -15,6 +15,7 @@ import RateStar from '../RateStar'
 interface ContributorProfileProps {
   contributor: ContributorFullStructure
   rate: number | null
+  drawer?: boolean
   user: (User & { image: { url: string } | null }) | null
   beforeRated?: {
     rating: number
@@ -24,6 +25,7 @@ interface ContributorProfileProps {
 const ContributorProfile: FC<ContributorProfileProps> = ({
   contributor,
   rate,
+  drawer,
   beforeRated,
   user,
 }) => {
@@ -115,20 +117,22 @@ const ContributorProfile: FC<ContributorProfileProps> = ({
         </motion.div>
       </LampContainer> */}
       </div>
-      <Separator />
-      {!beforeRated && (
-        <div className="py-12 px-4 ">
-          <h2 className="text-xl font-semibold">
-            نظر خود راجع به {contributor.name} را ثبت کنید.
-          </h2>
-          <AddRating
-            reviews={contributor.Reviews}
-            product={contributor}
-            user={user}
-          />
-        </div>
+      {!beforeRated && !drawer && (
+        <>
+          <Separator />
+          <div className="py-12 px-4 ">
+            <h2 className="text-xl font-semibold">
+              نظر خود راجع به {contributor.name} را ثبت کنید.
+            </h2>
+            <AddRating
+              reviews={contributor.Reviews}
+              product={contributor}
+              user={user}
+            />
+          </div>
+        </>
       )}
-      <ListRating reviews={contributor.Reviews} />
+      {!drawer && <ListRating reviews={contributor.Reviews} />}
     </section>
   )
 }
