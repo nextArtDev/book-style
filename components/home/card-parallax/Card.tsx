@@ -15,7 +15,7 @@ interface CardProps {
   // src: string
   // url?: string
   // color: string
-  category: CategoryFullStructure | null
+  billboard: (Billboard & { categories: Category[] }) | null
   progress: MotionValue<number>
   range: number[]
   targetScale: number
@@ -30,7 +30,7 @@ const Card = ({
   progress,
   range,
   targetScale,
-  category,
+  billboard,
 }: CardProps) => {
   const container = useRef(null)
   const { scrollYProgress } = useScroll({
@@ -70,7 +70,7 @@ const Card = ({
           {/* <p>drink more water</p> */}
           {/* <p>{category?.name}</p> */}
           <p className={cn(GramophoneStone.className, 'font-bold text-3xl')}>
-            {category?.billboard.label}
+            {billboard?.label}
           </p>
           <div
             className={`${i % 2 === 0 ? styles.tapeSection : styles.topTape} `}
@@ -78,24 +78,27 @@ const Card = ({
         </div>
 
         <div className={styles.body}>
-          <div className={styles.description}>
-            <div
-              className={`mix-blend-multiply box-content pt-5 pb-3 pr-1 text-center ${
-                styles.note
-              } ${
-                i % 4 === 0
-                  ? styles.noteOrange
-                  : i % 4 === 1
-                  ? styles.notePink
-                  : i % 4 === 2
-                  ? styles.noteBlue
-                  : styles.noteGreen
-              }`}
-            >
-              <p className={cn(Shabnam.className, 'mix-blend-hard-light')}>
-                {category?.name}
-              </p>
-            </div>
+          <div className={`flex flex-wrap gap-2 ${styles.description}`}>
+            {billboard?.categories.slice(0, 12).map((category) => (
+              <div
+                key={category.id}
+                className={` mix-blend-multiply box-content pt-5 pb-3 pr-1 text-center ${
+                  styles.note
+                } ${
+                  i % 4 === 0
+                    ? styles.noteOrange
+                    : i % 4 === 1
+                    ? styles.notePink
+                    : i % 4 === 2
+                    ? styles.noteBlue
+                    : styles.noteGreen
+                }`}
+              >
+                <p className={cn(Shabnam.className, 'mix-blend-hard-light')}>
+                  {category?.name}
+                </p>
+              </div>
+            ))}
             {/* <span>
               <a href={url} target="_blank">
                 See more
@@ -115,7 +118,7 @@ const Card = ({
             </span> */}
           </div>
 
-          <div className={styles.imageContainer}>
+          {/* <div className={styles.imageContainer}>
             <motion.div
               className={styles.inner}
               style={{
@@ -128,9 +131,9 @@ const Card = ({
                 alt="image"
                 className=""
               />
-              {/* <NextImage fill src={`/parallax-images/${src}`} alt="image" /> */}
+         
             </motion.div>
-          </div>
+          </div> */}
         </div>
       </motion.div>
     </div>

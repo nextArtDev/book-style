@@ -3,12 +3,27 @@ import { HeroParallax } from '@/components/home/HeroParallax'
 import { Quotes } from '@/components/home/Quots'
 import { SwipeCarousel } from '@/components/home/SwipeCarousel'
 import CardParallax from '@/components/home/card-parallax'
+import {
+  getAllBillboards,
+  getAllBillboardsWithCategories,
+} from '@/lib/queries/dashboard/billboards'
 import { getAllCategories } from '@/lib/queries/home/category'
 import { getPopularProducts } from '@/lib/queries/home/products'
 
 export default async function Home() {
   const categories = await getAllCategories({})
-  // console.log(await getPopularProducts())
+  const billboards = await getAllBillboardsWithCategories()
+  if (!billboards)
+    return (
+      <p className="w-full h-full flex items-center justify-center text-3xl text-center ">
+        هنوز بیلبوردی اضافه نشده....
+      </p>
+    )
+  // console.log(
+  //   billboards.map((billboard) =>
+  //     billboard.categories.map((category) => console.log(category.name))
+  //   )
+  // )
   return (
     <main className="flex-1 ">
       <HeroParallax categories={categories} />
@@ -17,7 +32,7 @@ export default async function Home() {
         <SwipeCarousel categories={categories} />
       </div>
       <FeaturedProducts />
-      <CardParallax categories={categories} />
+      <CardParallax billboards={billboards} />
     </main>
   )
 }

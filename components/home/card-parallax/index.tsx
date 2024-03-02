@@ -9,9 +9,9 @@ import { Billboard, Category, Image, Product } from '@prisma/client'
 import { CategoryFullStructure } from '@/lib/queries/home/category'
 
 interface CardParallaxProps {
-  categories: CategoryFullStructure[] | null
+  billboards: (Billboard & { categories: Category[] })[]
 }
-export default function CardParallax({ categories }: CardParallaxProps) {
+export default function CardParallax({ billboards }: CardParallaxProps) {
   //   console.log(categories)
 
   const container = useRef(null)
@@ -33,14 +33,14 @@ export default function CardParallax({ categories }: CardParallaxProps) {
 
   return (
     <main ref={container} className="relative mt-[10vh]">
-      {categories?.map((category, i) => {
-        const targetScale = 1 - (categories.length - i) * 0.05
+      {billboards?.map((billboard, i) => {
+        const targetScale = 1 - (billboards.length - i) * 0.05
         return (
           <Card
             key={`p_${i}`}
             i={i}
             // {...project}
-            category={category}
+            billboard={billboard}
             progress={scrollYProgress}
             range={[i * 0.25, 1]}
             targetScale={targetScale}
