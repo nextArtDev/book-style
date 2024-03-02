@@ -58,8 +58,10 @@ const Card = ({
         className={`${styles.card} ${styles.shufflePapers}`}
       >
         <div
-          className={`mix-blend-multiply dark:${
-            i % 2 === 0 ? 'mix-blend-luminosity' : 'mix-blend-difference'
+          className={`mix-blend-multiply ${
+            i % 2 === 0
+              ? 'dark:mix-blend-luminosity dark:text-white/80'
+              : 'dark:mix-blend-difference '
           } ${styles.tapePaper} ${styles.pink}`}
         >
           <div

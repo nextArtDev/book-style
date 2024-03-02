@@ -248,3 +248,34 @@ abbr[title] {
   -moz-box-shadow: 20px 0px 25px 5px #295d92;
   box-shadow: 22px 0px 35px 0px rgba(0, 0, 0, 0.5);
 }
+
+.yellowBg {
+  background-image: linear-gradient(
+      180deg,
+      rgb(106, 42, 27),
+      rgb(106, 42, 27) 3px,
+      transparent calc(3px + 2px)
+    ),
+    linear-gradient(
+      270deg,
+      transparent 0%,
+      transparent 12%,
+      rgb(245, 196, 146) 12%,
+      rgb(245, 196, 146) calc(12% + 2px),
+      transparent calc(12% + 2px),
+      transparent calc(12% + 6px),
+      rgb(245, 196, 146) calc(12% + 6px),
+      rgb(245, 196, 146) calc(12% + 8px),
+      transparent calc(12% + 8px),
+      transparent 100%
+    ),
+    linear-gradient(180deg, rgb(251, 238, 159) 11%, transparent 11%),
+    repeating-linear-gradient(
+      180deg,
+      rgb(201, 215, 152) 0px,
+      rgb(201, 215, 152) 2px,
+      transparent 2px,
+      transparent 36px
+    ),
+    linear-gradient(rgb(251, 238, 159), rgb(251, 238, 159));
+}
