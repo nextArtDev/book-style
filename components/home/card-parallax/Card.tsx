@@ -5,7 +5,7 @@ import { useTransform, motion, useScroll, MotionValue } from 'framer-motion'
 import { useRef } from 'react'
 import { Billboard, Category, Image } from '@prisma/client'
 import { CategoryFullStructure } from '@/lib/queries/home/category'
-import { GramophoneStone, primaryFont } from '@/lib/fonts'
+import { GramophoneStone, Shabnam, primaryFont } from '@/lib/fonts'
 import { cn } from '@/lib/utils'
 
 interface CardProps {
@@ -79,7 +79,23 @@ const Card = ({
 
         <div className={styles.body}>
           <div className={styles.description}>
-            <p>{category?.name}</p>
+            <div
+              className={`mix-blend-multiply box-content pt-5 pb-3 pr-1 text-center ${
+                styles.note
+              } ${
+                i % 4 === 0
+                  ? styles.noteOrange
+                  : i % 4 === 1
+                  ? styles.notePink
+                  : i % 4 === 2
+                  ? styles.noteBlue
+                  : styles.noteGreen
+              }`}
+            >
+              <p className={cn(Shabnam.className, 'mix-blend-hard-light')}>
+                {category?.name}
+              </p>
+            </div>
             {/* <span>
               <a href={url} target="_blank">
                 See more

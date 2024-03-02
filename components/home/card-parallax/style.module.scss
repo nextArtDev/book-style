@@ -105,16 +105,16 @@
     top: 0;
     width: 100%;
     height: 100%;
-    -webkit-transform: rotateZ(2.5deg);
-    -o-transform: rotate(2.5deg);
-    transform: rotateZ(2.5deg);
+    -webkit-transform: rotateZ(0.7deg);
+    -o-transform: rotate(0.7deg);
+    transform: rotateZ(0.7deg);
     z-index: -1;
 }
 
 .shufflePapers:after {
-    -webkit-transform: rotateZ(-2.5deg);
-    -o-transform: rotate(-2.5deg);
-    transform: rotateZ(-2.5deg);
+    -webkit-transform: rotateZ(-0.7deg);
+    -o-transform: rotate(-0.7deg);
+    transform: rotateZ(-0.7deg);
 }
 
 .shufflePapers:hover::after,
@@ -125,18 +125,18 @@
     top: 0;
     width: 100%;
     height: 100%;
-    -webkit-transform: rotateZ(0.7deg);
-    -o-transform: rotate(0.7deg);
-    transform: rotateZ(0.7deg);
+    -webkit-transform: rotateZ(0.4deg);
+    -o-transform: rotate(0.4deg);
+    transform: rotateZ(0.4deg);
     z-index: -1;
     transition: all;
     transition-duration: 0.4s;
 }
 
 .shufflePapers:hover::after {
-    -webkit-transform: rotateZ(-0.7deg);
-    -o-transform: rotate(-0.7deg);
-    transform: rotateZ(-0.7deg);
+    -webkit-transform: rotateZ(-0.4deg);
+    -o-transform: rotate(-0.4deg);
+    transform: rotateZ(-0.4deg);
     transition: all;
     transition-duration: 0.4s;
 }
@@ -261,4 +261,229 @@
     transform: rotate(45deg);
     left: -4vmin;
     bottom: 0;
+}
+
+// Folded
+//////////////////////////////////////////////////////////////////
+/// 
+$pi: 3.14159265359;
+$_precision: 10;
+
+@function pow($base, $exp) {
+    $value: $base;
+
+    @if $exp >1 {
+        @for $i from 2 through $exp {
+            $value: $value * $base;
+        }
+    }
+
+    @if $exp < 1 {
+        @for $i from 0 through -$exp {
+            $value: $value / $base;
+        }
+    }
+
+    @return $value;
+}
+
+@function fact($num) {
+    $fact: 1;
+
+    @if $num >0 {
+        @for $i from 1 through $num {
+            $fact: $fact * $i;
+        }
+    }
+
+    @return $fact;
+}
+
+@function _to_unitless_rad($angle) {
+    @if unit($angle)=="deg" {
+        $angle: $angle / 180deg * $pi;
+    }
+
+    @if unit($angle)=="rad" {
+        $angle: $angle / 1rad;
+    }
+
+    @return $angle;
+}
+
+@function sin($angle) {
+    $a: _to_unitless_rad($angle);
+    $sin: $a;
+
+    @for $n from 1 through $_precision {
+        $sin: $sin + (pow(-1, $n) / fact(2 * $n + 1)) * pow($a, (2 * $n + 1));
+    }
+
+    @return $sin;
+}
+
+@function cos($angle) {
+    $a: _to_unitless_rad($angle);
+    $cos: 1;
+
+    @for $n from 1 through $_precision {
+        $cos: $cos + (pow(-1, $n) / fact(2*$n)) * pow($a, 2*$n);
+    }
+
+    @return $cos;
+}
+
+@function tan($angle) {
+    @return sin($angle) / cos($angle);
+}
+
+/* ////////////////////////////////////////////////////////////////////////////////////////// */
+
+@mixin foldedCorner($angle: 30deg, $bgColor, $size) {
+    position: relative;
+    background: $bgColor;
+    background: linear-gradient($angle - 180deg, transparent $size, $bgColor 0);
+    border-radius: 0.5em;
+
+
+    $x: $size / sin($angle);
+    $y: $size / cos($angle);
+    $rotateAngle: 180deg - $angle * 2;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: linear-gradient($angle + 180deg, transparent 50%, rgba(darken($bgColor, 15%), .6) 0, rgba(darken($bgColor, 20%), .8) 100%) 100% 0 no-repeat;
+        width: $x;
+        height: $y;
+        transform: rotateX(180deg) rotateZ($rotateAngle);
+        border-bottom-left-radius: inherit;
+        box-shadow: -.2em .2em .3em -.1em rgba(0, 0, 0, .15);
+
+    }
+}
+
+
+// .main {
+//     width: 100vw;
+//     min-height: 100vh;
+//     padding: 4em;
+//     background: #e2d8a7;
+//     color: #fff;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     font-family: 'Open Sans', sans-serif;
+
+
+// }
+
+// .container {
+//     width: 80%;
+//     display: grid;
+//     align-items: center;
+//     justify-content: center;
+//     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+//     grid-gap: 3em;
+
+// }
+
+.note {
+    width: 100px;
+    height: 50px;
+   
+
+    &--blue {
+        @include foldedCorner(30deg, #528579, 1em);
+    }
+
+    &--organge {
+        @include foldedCorner(30deg, #e1a36f, 0.75em);
+    }
+
+    &--pink {
+        @include foldedCorner(70deg, #d97d70, 1em);
+    }
+
+    &--green {
+        @include foldedCorner(25deg, #6f916e, 1.25em);
+    }
+}
+
+.noteBlue {
+    @include foldedCorner(30deg, #528579, 1em);
+}
+
+.noteBlue:hover {
+    @include foldedCorner(30deg, #528579, 0);
+}
+
+.noteOrange {
+    @include foldedCorner(30deg, #e1a36f, 0.75em);
+}
+
+.notePink {
+    @include foldedCorner(70deg, #d97d70, 1em);
+}
+
+.noteGreen {
+    @include foldedCorner(25deg, #6f916e, 1.25em);
+}
+
+/////////////////////////////////////////////////////
+$width: 8rem;
+
+.paper-corner {
+    background-color: #FFFF8D;
+    width: $width;
+    height: 4rem;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    border-radius: 1rem;
+    cursor: pointer;
+
+
+    h2 {
+        font-size: 2rem;
+        font-family: Lato, sans-serif;
+        color: #455A64;
+    }
+
+    &:before,
+    &:after {
+        border: $width/10 solid;
+        width: 0;
+        height: 0;
+        position: absolute;
+        content: "";
+        top: 0;
+        right: 0;
+        transition: all;
+        transition-duration: 0.8s;
+        border-radius: 0 0 0 1rem;
+    }
+
+    &:after {
+        border-color: transparent transparent #f5f125 #f5f125;
+        box-shadow: 1px 1px 5px 1px #455A64;
+    }
+
+    &:hover:after {
+        border-color: transparent transparent transparent transparent;
+        box-shadow: none;
+    }
+
+    &:before {
+        border-color: #e2d8a7 #e2d8a7 transparent transparent;
+    }
+
+    &:hover:before {
+        border-color: transparent transparent transparent transparent;
+    }
 }
