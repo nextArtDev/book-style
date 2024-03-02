@@ -5,6 +5,8 @@ import { useTransform, motion, useScroll, MotionValue } from 'framer-motion'
 import { useRef } from 'react'
 import { Billboard, Category, Image } from '@prisma/client'
 import { CategoryFullStructure } from '@/lib/queries/home/category'
+import { GramophoneStone, primaryFont } from '@/lib/fonts'
+import { cn } from '@/lib/utils'
 
 interface CardProps {
   i: number
@@ -44,18 +46,35 @@ const Card = ({
     <div ref={container} className={styles.cardContainer}>
       <motion.div
         style={{
-          backgroundImage: `url(${category?.billboard.image?.url})`,
+          // backgroundImage: `url(${category?.billboard.image?.url})`,
           // backgroundImage: `url(/parallax-images/${src})`,
-          backgroundBlendMode: 'multiply',
+          // backgroundBlendMode: 'multiply',
           // backgroundColor: color,
           scale,
           top: `calc(-5vh + ${i * 25}px)`,
-          boxShadow:
-            'rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset',
+          // boxShadow:
+          //   'rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset',
         }}
-        className={`${styles.card} `}
+        className={`${styles.card} ${styles.shufflePapers}`}
       >
-        <h2>{category?.billboard.label}</h2>
+        <div
+          className={`mix-blend-multiply dark:${
+            i % 2 === 0 ? 'mix-blend-luminosity' : 'mix-blend-difference'
+          } ${styles.tapePaper} ${styles.pink}`}
+        >
+          <div
+            className={`${i % 2 === 0 ? styles.tapeSection : styles.topTape} `}
+          ></div>
+          {/* <p>drink more water</p> */}
+          {/* <p>{category?.name}</p> */}
+          <p className={cn(GramophoneStone.className, 'font-bold text-3xl')}>
+            {category?.billboard.label}
+          </p>
+          <div
+            className={`${i % 2 === 0 ? styles.tapeSection : styles.topTape} `}
+          ></div>
+        </div>
+
         <div className={styles.body}>
           <div className={styles.description}>
             <p>{category?.name}</p>
