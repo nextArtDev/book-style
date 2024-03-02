@@ -32,13 +32,14 @@ const ProductPage: FC<ProductPageProps> = ({
   rate,
 }) => {
   return (
-    <section>
-      <article className="max-w-7xl pt-8 mx-auto mt-8 grid gap-4 grid-cols-1 place-items-center md:grid-cols-2 lg:grid-cols-3">
+    <section className="max-w-7xl pt-8 mx-auto mt-8">
+      <article className="grid gap-2 md:gap-4 grid-cols-1 place-items-center md:grid-cols-2 lg:grid-cols-3">
         <div className="flex flex-col justify-center gap-y-4">
           <FlipCover
             url={product.images?.[0].url}
             title={product.title}
             cover={product?.cover}
+            className="mx-0! px-0!"
           />
           {product.Reviews.length > 0 && rate && (
             <RateStar rate={rate} reviewCounts={product.Reviews.length} />
@@ -46,7 +47,7 @@ const ProductPage: FC<ProductPageProps> = ({
         </div>
         <div className="flex flex-col gap-y-4 justify-center items-start pr-8 md:pr-0 ">
           <p className="text-lg font-bold md:text-2xl ">{product.title}</p>
-          <p className="text-sm text-muted-foreground font-semibold md:text-base ">
+          <p className="text-sm max-w-48 text-muted-foreground font-semibold md:text-base ">
             {product.subTitle}
           </p>
           <div className="flex items-center gap-2">
@@ -68,8 +69,8 @@ const ProductPage: FC<ProductPageProps> = ({
           <div className="flex items-center gap-2">
             {product.price && <Currency value={+product?.price} />}
             تومان
+            <AddToCart product={product} />
           </div>
-          <AddToCart product={product} />
         </div>
         <div className="">
           <ProductTable product={product} />

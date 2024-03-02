@@ -18,6 +18,7 @@ const FeaturedProducts: FC<FeaturedProductsProps> = async ({}) => {
     url: featuredProduct.images[0].url,
     title: featuredProduct.title,
     id: featuredProduct.id,
+    cover: featuredProduct?.cover,
   }))
   return (
     <div className="">

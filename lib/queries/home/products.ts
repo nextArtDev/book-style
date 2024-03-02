@@ -205,9 +205,11 @@ export const getProductsByCategoryId = cache(
   ({
     id,
     categoryId,
+    take,
   }: {
     id: string
     categoryId: string
+    take?: number
   }): Promise<SingleProductFullStructure[] | null> => {
     const products = prisma.product.findMany({
       where: {
@@ -225,6 +227,7 @@ export const getProductsByCategoryId = cache(
           include: { User: { include: { image: { select: { url: true } } } } },
         },
       },
+      take: take,
     })
 
     return products

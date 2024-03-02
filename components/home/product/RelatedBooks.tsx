@@ -6,19 +6,32 @@ import Link from 'next/link'
 import { SingleProductFullStructure } from '@/lib/queries/home/products'
 import FlipCover from './3d-cover/FlipCover'
 import { Separator } from '@/components/ui/separator'
+import HorizontalScrollCarousel from '../horizontal-carousel/HorizontalScrollCarousel '
 
 interface RelatedBooksProps {
   products: SingleProductFullStructure[] | null
 }
 
 const RelatedBooks: FC<RelatedBooksProps> = ({ products }) => {
-  if (products) {
+  const cards = products?.map((product) => ({
+    url: product.images[0].url,
+    title: product.title,
+    id: product.id,
+    cover: product.cover,
+  }))
+  if (cards) {
     return (
       <section>
-        <Separator className="my-2" />
-        <h2 className="py-2 text-xl font-semibold">کتابهای مرتبط:</h2>
-
-        <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 ">
+        {/* <Separator className="mt-2" /> */}
+        <h2 className="py-2 -pb-8 -mb-8 text-xl font-semibold">
+          کتابهای مرتبط:
+        </h2>
+        <HorizontalScrollCarousel
+          cards={cards}
+          rtl={true}
+          className="overflow-x-hidden"
+        />
+        {/* <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 ">
           {products.map((product) => (
             <Link key={product.id} href={`/products/${product.id}`}>
               <FlipCover
@@ -28,7 +41,7 @@ const RelatedBooks: FC<RelatedBooksProps> = ({ products }) => {
               />
             </Link>
           ))}
-        </div>
+        </div> */}
       </section>
     )
   } else {

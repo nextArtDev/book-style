@@ -11,17 +11,17 @@ type Props = {
 
 function FlipCover({ url, title, cover, className }: Props) {
   return (
-    <div className={cn('book-items w-[296px]  ', className)}>
+    <div className={cn('book-items w-[220px]  ', className)}>
       <div className="main-book-wrap">
         <div className="book-cover " style={{ rotate: ' y 180deg' }}>
           <div className="book-inside "></div>
           <div
             className="book-image"
-            style={{ borderRadius: cover === 'Narm' ? '2px' : '' }}
+            style={{ borderRadius: cover === 'Narm' ? 'none' : '' }}
           >
             <Image
-              width={296}
-              height={356}
+              width={210}
+              height={250}
               alt={title}
               src={url}
               style={{

@@ -17,7 +17,10 @@ interface ProductTableProps {
 
 const ProductTable: FC<ProductTableProps> = ({ product }) => {
   return (
-    <div dir="rtl" className="bg-secondary rounded-md p-4  mx-8  ">
+    <div
+      dir="rtl"
+      className="bg-secondary/10 backdrop-blur-sm rounded-md p-4  mx-8  "
+    >
       <Table>
         {/* <TableCaption>مشخصات کتاب.</TableCaption> */}
         <TableHeader>

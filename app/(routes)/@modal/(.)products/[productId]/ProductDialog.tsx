@@ -32,10 +32,12 @@ const ProductDialog: FC<pageProps> = ({ product, rate }) => {
           }
         }}
       >
-        <DialogContent>
+        <DialogContent className="rounded-md bg-secondary/20 backdrop-blur space-y-6">
           <div className="flex flex-col gap-y-4 justify-center items-start pr-8 md:pr-0 ">
-            <p className="text-lg font-bold md:text-2xl ">{product.title}</p>
-            <p className="text-sm text-muted-foreground font-semibold md:text-base ">
+            <p className="text-lg text-muted font-bold md:text-2xl ">
+              {product.title}
+            </p>
+            <p className="text-sm max-w-[60%] font-semibold md:text-base ">
               {product.subTitle}
             </p>
             {product.Reviews.length > 0 && rate && (
@@ -50,7 +52,7 @@ const ProductDialog: FC<pageProps> = ({ product, rate }) => {
               ))}
             </div>
             <div className="flex items-center  gap-4">
-              <p>ترجمه:</p>
+              <p>مترجم:</p>
               {product.translator.map((translator) => (
                 <Link
                   href={`/contributors/${translator.id}`}
@@ -62,14 +64,14 @@ const ProductDialog: FC<pageProps> = ({ product, rate }) => {
                 </Link>
               ))}
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex flex-wrap items-center gap-2">
               {product.price && <Currency value={+product?.price} />}
               تومان
+              <AddToCart product={product} />
             </div>
           </div>
-          <div className="w-full">
-            <AddToCart product={product} />
-          </div>
+          {/* <div className="w-full">
+          </div> */}
           <Button
             onClick={() => window.location.assign(`/products/${product.id}`)}
           >

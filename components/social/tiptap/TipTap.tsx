@@ -20,7 +20,18 @@ interface TipTapProps {
 const TipTap: FC<TipTapProps> = ({ description, onChange }) => {
   const editor = useEditor({
     extensions: [
-      StarterKit.configure({}),
+      StarterKit.configure({
+        orderedList: {
+          HTMLAttributes: {
+            class: 'list-decimal pl-4',
+          },
+        },
+        bulletList: {
+          HTMLAttributes: {
+            class: 'list-disc pl-4',
+          },
+        },
+      }),
       ListItem.configure({}),
       TextStyle.configure({
         HTMLAttributes: {

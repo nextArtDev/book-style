@@ -10,6 +10,7 @@ type CardType = {
   url: string
   title: string
   id: string
+  cover?: string | null
 }
 
 interface HorizontalScrollCarouselProps {
@@ -71,6 +72,7 @@ const HorizontalScrollCarousel = ({
                 <FlipCover
                   title={card.title}
                   url={card.url}
+                  cover={card.cover}
                   className="bg-transparent "
                 />
               </Link>

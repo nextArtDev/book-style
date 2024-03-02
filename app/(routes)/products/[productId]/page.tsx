@@ -33,6 +33,7 @@ const page: FC<pageProps> = async ({ params: { productId } }) => {
   const relatedBooks = await getProductsByCategoryId({
     id: productId,
     categoryId: product.product.categoryId,
+    take: 7,
   })
 
   const userWithPic = await prisma.user.findFirst({

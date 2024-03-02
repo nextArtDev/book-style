@@ -116,31 +116,31 @@ const Toolbar: FC<ToolbarProps> = ({ editor }) => {
 
       <Toggle
         size={'sm'}
-        pressed={editor.isActive('heading')}
+        pressed={editor.isActive('heading1')}
         onPressedChange={() =>
           editor.chain().focus().toggleHeading({ level: 1 }).run()
         }
-        className={editor.isActive('heading', { level: 1 }) ? 'is-active' : ''}
+        className={editor.isActive('heading1', { level: 1 }) ? 'is-active' : ''}
       >
         <Heading1 className="h-4 w-4" />
       </Toggle>
       <Toggle
         size={'sm'}
-        pressed={editor.isActive('heading')}
+        pressed={editor.isActive('heading2')}
         onPressedChange={() =>
           editor.chain().focus().toggleHeading({ level: 2 }).run()
         }
-        className={editor.isActive('heading', { level: 2 }) ? 'is-active' : ''}
+        className={editor.isActive('heading2', { level: 2 }) ? 'is-active' : ''}
       >
         <Heading2 className="h-4 w-4" />
       </Toggle>
       <Toggle
         size={'sm'}
-        pressed={editor.isActive('heading')}
+        pressed={editor.isActive('heading3')}
         onPressedChange={() =>
           editor.chain().focus().toggleHeading({ level: 3 }).run()
         }
-        className={editor.isActive('heading', { level: 3 }) ? 'is-active' : ''}
+        className={editor.isActive('heading3', { level: 3 }) ? 'is-active' : ''}
       >
         <Heading3 className="h-4 w-4" />
       </Toggle>
