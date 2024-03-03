@@ -13,6 +13,7 @@ import { CategoryFullStructure } from '@/lib/queries/home/category'
 import FlipCover from './product/3d-cover/FlipCover'
 import { Product } from '@prisma/client'
 import Lenis from '@studio-freight/lenis'
+import { Separator } from '../ui/separator'
 
 export const HeroParallax = ({
   categories,
@@ -37,6 +38,7 @@ export const HeroParallax = ({
   const firstRow = products?.slice(0, 4)
   const secondRow = products?.slice(4, 8)
   const thirdRow = products?.slice(8, 11)
+  const forthRow = products?.slice(0, 4)
   //   console.log({ firstRow })
   const ref = React.useRef(null)
   const { scrollYProgress } = useScroll({
@@ -104,10 +106,19 @@ export const HeroParallax = ({
           ))}
         </motion.div>
         <motion.div className="flex flex-row-reverse space-x-reverse -space-x-2">
-          {thirdRow?.map((product) => (
+          {forthRow?.map((product) => (
             <ProductCard
               product={product}
               translate={translateX}
+              key={product?.id}
+            />
+          ))}
+        </motion.div>
+        <motion.div className="flex flex-row-reverse space-x-reverse -space-x-2">
+          {forthRow?.map((product) => (
+            <ProductCard
+              product={product}
+              translate={translateXReverse}
               key={product?.id}
             />
           ))}
@@ -119,13 +130,22 @@ export const HeroParallax = ({
 
 export const Header = () => {
   return (
-    <div className="max-w-7xl relative mx-auto py-4 md:py-6 px-4 w-full  left-0 top-0">
-      <h1 className="py-2 bg-gradient-to-r from-gray-600 via-black/55 to-gray-400 dark:from-yellow-600 dark:via-white/55 dark:to-yellow-400 inline-block text-transparent bg-clip-text text-2xl md:text-7xl font-bold  ">
+    <div className="bg-light-bg dark:bg-dark-bg max-w-7xl h-[35vh] relative mx-auto pt-3 pb-4 md:pb-6 px-4 w-full  left-0 top-0">
+      <div>
+        <Separator className="bg-black p-[1px] " />
+        <Separator className="bg-transparent " />
+        <Separator className="bg-black p-[1px] " />
+      </div>
+      <h1 className="w-full text-center py-3 bg-gradient-to-r from-gray-600 via-black/55 to-gray-400 dark:from-yellow-600 dark:via-white/55 dark:to-yellow-400 inline-block text-transparent bg-clip-text text-2xl md:text-7xl font-bold  ">
         کتابفروشی فردا <br />
       </h1>
-      <p className="max-w-2xl text-base md:text-xl mt-8 dark:text-neutral-200">
+      <Separator className="bg-black p-0.5 " />
+      <p className="max-w-2xl text-base border-b border-black w-fit md:text-xl mt-8 dark:text-neutral-200">
         کتابفروشی و لوازم تحریر فردا
       </p>
+      <div className="absolute bg-light-bg dark:bg-dark-bg top-1 right-[50%] translate-x-[50%] w-fit px-1 h-fit text-rose-500 font-semibold ">
+        سهامی خاص
+      </div>
     </div>
   )
 }
@@ -148,10 +168,7 @@ export const ProductCard = ({
       key={product?.title}
       className="relative group/product h-auto w-auto  flex-shrink-0"
     >
-      <Link
-        href={`/products/${product?.id}`}
-        className="block group-hover/product:shadow-2xl "
-      >
+      <Link href={`/products/${product?.id}`} className=" ">
         {/* <Image
           src={product.images[0].url}
           fill
@@ -165,9 +182,9 @@ export const ProductCard = ({
         />
       </Link>
       {/* <div className="absolute inset-0 h-full w-full opacity-0 group-hover/product:opacity-80 bg-black pointer-events-none"></div> */}
-      <h2 className="absolute bottom-4 left-4 opacity-0 group-hover/product:opacity-100 text-white">
+      {/* <h2 className="absolute bottom-4 left-4 opacity-0 group-hover/product:opacity-100 text-white">
         {product?.title}
-      </h2>
+      </h2> */}
     </motion.div>
   )
 }

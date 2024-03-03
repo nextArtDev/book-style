@@ -7,6 +7,7 @@ import { Billboard, Category, Image } from '@prisma/client'
 import { CategoryFullStructure } from '@/lib/queries/home/category'
 import { GramophoneStone, Shabnam, primaryFont } from '@/lib/fonts'
 import { cn } from '@/lib/utils'
+import Link from 'next/link'
 
 interface CardProps {
   i: number
@@ -78,26 +79,34 @@ const Card = ({
         </div>
 
         <div className={styles.body}>
-          <div className={`flex flex-wrap gap-2 ${styles.description}`}>
+          <div
+            className={`w-full flex justify-around shrink-0 flex-wrap gap-2 ${styles.description}`}
+          >
             {billboard?.categories.slice(0, 12).map((category) => (
-              <div
+              <Link
+                href={`/categories/${category.id}`}
                 key={category.id}
                 className={` mix-blend-multiply box-content pt-5 pb-3 pr-1 text-center ${
                   styles.note
                 } ${
-                  i % 4 === 0
-                    ? styles.noteOrange
-                    : i % 4 === 1
+                  i % 4 === 1
                     ? styles.notePink
                     : i % 4 === 2
+                    ? styles.noteOrange
+                    : i % 4 === 3
                     ? styles.noteBlue
                     : styles.noteGreen
                 }`}
               >
-                <p className={cn(Shabnam.className, 'mix-blend-hard-light')}>
+                <p
+                  className={cn(
+                    GramophoneStone.className,
+                    'mix-blend-hard-light text-base '
+                  )}
+                >
                   {category?.name}
                 </p>
-              </div>
+              </Link>
             ))}
             {/* <span>
               <a href={url} target="_blank">

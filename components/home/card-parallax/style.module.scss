@@ -409,7 +409,7 @@ $_precision: 10;
     }
 
     &--green {
-        @include foldedCorner(25deg, #6f916e, 1.25em);
+        @include foldedCorner(25deg, #ecb2ba, 1.25em);
     }
 }
 
@@ -430,7 +430,7 @@ $_precision: 10;
 }
 
 .noteGreen {
-    @include foldedCorner(25deg, #6f916e, 1.25em);
+    @include foldedCorner(25deg, #ecb2ba, 1.25em);
 }
 
 /////////////////////////////////////////////////////
