@@ -305,7 +305,7 @@ export const homeSidebarLinks: SidebarLink[] = [
   },
   {
     imgURL: '/assets/icons/social.svg',
-    route: '/socisl',
+    route: '/social',
     label: 'شبکه اجتماعی',
   },
   {

@@ -3,6 +3,7 @@ import { HeroParallax } from '@/components/home/HeroParallax'
 import { Quotes } from '@/components/home/Quots'
 import { SwipeCarousel } from '@/components/home/SwipeCarousel'
 import CardParallax from '@/components/home/card-parallax'
+import HighlightReviews from '@/components/home/highlight-reviews/HighlightReviews'
 import {
   getAllBillboards,
   getAllBillboardsWithCategories,
@@ -33,6 +34,7 @@ export default async function Home() {
       </div>
       <FeaturedProducts />
       <CardParallax billboards={billboards} />
+      <HighlightReviews />
     </main>
   )
 }
