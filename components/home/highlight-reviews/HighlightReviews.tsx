@@ -1,13 +1,16 @@
-'use client'
 import { InfiniteMovingCards } from '@/components/shared/InfiniteMovingCards'
 import { FC } from 'react'
 
 import { cn } from '@/lib/utils'
 import { InfiniteMovingReviews } from './InfiniteMovingReviews'
+import { Review, User } from '@prisma/client'
+import { ReviewWithUserImage } from '@/lib/queries/home/reviews'
 
-interface HighlightReviewsProps {}
+interface HighlightReviewsProps {
+  hotReviews: ReviewWithUserImage[] | null
+}
 
-const HighlightReviews: FC<HighlightReviewsProps> = ({}) => {
+const HighlightReviews: FC<HighlightReviewsProps> = ({ hotReviews }) => {
   return (
     <div
       className={cn(
@@ -15,7 +18,7 @@ const HighlightReviews: FC<HighlightReviewsProps> = ({}) => {
       )}
     >
       <InfiniteMovingReviews
-        items={testimonials}
+        items={hotReviews}
         direction="left"
         speed="normal"
         className="text-sm text-right "

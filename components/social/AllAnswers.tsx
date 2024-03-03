@@ -8,7 +8,7 @@ import Image from 'next/image'
 import ParseHTML from './ParseHTML'
 import Votes from './Votes'
 import Pagination from './Pagination'
-import userImage from '@/public/assets/icons/user.svg'
+import userImage from '../../public/assets/icons/user.svg'
 import { AnswerFilters } from '@/lib/constants'
 import { getAnswers } from '@/lib/actions/social/answer.actions'
 import { getTimestamp } from '@/lib/socialUtils'
@@ -20,14 +20,13 @@ interface AllAnswersProps {
   page?: number
   filter?: string
 }
-
-const AllAnswers: FC<AllAnswersProps> = async ({
+export default async function AllAnswers({
   questionId,
   userId,
   totalAnswers,
   page,
   filter,
-}) => {
+}: AllAnswersProps) {
   const result = await getAnswers({
     questionId,
     page: page ? +page : 1,
@@ -94,5 +93,3 @@ const AllAnswers: FC<AllAnswersProps> = async ({
     </div>
   )
 }
-
-export default AllAnswers

@@ -2,6 +2,7 @@
 
 import { Golpa } from '@/lib/fonts'
 import { cn } from '@/lib/utils'
+import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 
 export const InfiniteMovingCards = ({
@@ -15,10 +16,17 @@ export const InfiniteMovingCards = ({
   nameClassName,
 }: {
   items: {
-    quote: string
-    name: string
+    id: string
     title: string
+    content: string
+    views: number
+    authorId: string
   }[]
+  // items: {
+  //   quote: string
+  //   name: string
+  //   title: string
+  // }[]
   direction?: 'left' | 'right'
   speed?: 'fast' | 'normal' | 'slow'
   pauseOnHover?: boolean
@@ -29,7 +37,11 @@ export const InfiniteMovingCards = ({
 }) => {
   const containerRef = React.useRef<HTMLDivElement>(null)
   const scrollerRef = React.useRef<HTMLUListElement>(null)
+  // const [isMounted, setIsMounted] = useState(false)
 
+  // useEffect(() => {
+  //   setIsMounted(true)
+  // }, [])
   useEffect(() => {
     addAnimation()
   }, [])
@@ -76,6 +88,9 @@ export const InfiniteMovingCards = ({
       }
     }
   }
+  // if (!isMounted) {
+  //   return null
+  // }
   return (
     <div
       dir="ltr"
@@ -94,7 +109,8 @@ export const InfiniteMovingCards = ({
         )}
       >
         {items.map((item, idx) => (
-          <li
+          <Link
+            href={`/social/question/${item.id}`}
             className={cn(
               'w-[350px] max-w-full relative rounded-2xl border border-b-0 flex-shrink-0 border-slate-700 px-8 py-6 md:w-[450px]',
               itemClassName,
@@ -106,22 +122,21 @@ export const InfiniteMovingCards = ({
                 //     'linear-gradient(180deg, var(--slate-800), var(--slate-900)',
               }
             }
-            key={item.name}
+            key={item.id}
           >
             <blockquote>
               <div
                 aria-hidden="true"
                 className="user-select-none -z-1 pointer-events-none absolute -left-0.5 -top-0.5 h-[calc(100%_+_4px)] w-[calc(100%_+_4px)]"
               ></div>
-              <span
+              <p
                 dir="rtl"
                 className={cn(
-                  'line-clamp-6 inline-block pr-8 relative z-20 font-normal',
+                  'line-clamp-6 pr-8 overflow-hidden relative z-20 font-normal',
                   quoteClassName
                 )}
-              >
-                {item.quote}
-              </span>
+                dangerouslySetInnerHTML={{ __html: item.content }}
+              />
               <div
                 dir="rtl"
                 className="relative z-20 mt-6 flex flex-row items-center"
@@ -133,20 +148,21 @@ export const InfiniteMovingCards = ({
                       nameClassName
                     )}
                   >
-                    {item.name}
+                    {/* {item.name} */}
+                    {item.title}
                   </span>
-                  <span
+                  {/* <span
                     className={cn(
                       'inline-block pr-12  font-normal',
                       nameClassName
                     )}
                   >
                     {item.title}
-                  </span>
+                  </span> */}
                 </span>
               </div>
             </blockquote>
-          </li>
+          </Link>
         ))}
       </ul>
     </div>

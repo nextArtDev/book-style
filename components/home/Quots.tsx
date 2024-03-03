@@ -1,13 +1,12 @@
-'use client'
-
 import React, { useEffect, useState } from 'react'
 import { InfiniteMovingCards } from '../shared/InfiniteMovingCards'
+import { Question } from '@prisma/client'
 
-export function Quotes() {
+export function Quotes({ quotes }: { quotes: Question[] }) {
   return (
     <div className="h-[40rem]  rounded-md flex flex-col antialiased  items-center justify-center relative overflow-hidden">
       <InfiniteMovingCards
-        items={testimonials}
+        items={quotes}
         direction="left"
         speed="normal"
         className="text-xl text-right "

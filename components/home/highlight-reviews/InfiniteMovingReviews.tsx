@@ -4,6 +4,11 @@ import { Golpa } from '@/lib/fonts'
 import { cn } from '@/lib/utils'
 import React, { useEffect, useState } from 'react'
 import style from './style.module.scss'
+import { ReviewWithUserImage } from '@/lib/queries/home/reviews'
+import UserAvatar from '@/components/shared/Avatar'
+import { StarIcon } from 'lucide-react'
+import { Rating } from '@mui/material'
+import Link from 'next/link'
 
 export const InfiniteMovingReviews = ({
   items,
@@ -15,11 +20,7 @@ export const InfiniteMovingReviews = ({
   quoteClassName,
   nameClassName,
 }: {
-  items: {
-    quote: string
-    name: string
-    title: string
-  }[]
+  items: ReviewWithUserImage[] | null
   direction?: 'left' | 'right'
   speed?: 'fast' | 'normal' | 'slow'
   pauseOnHover?: boolean
@@ -77,12 +78,13 @@ export const InfiniteMovingReviews = ({
       }
     }
   }
+
   return (
     <div
       dir="ltr"
       ref={containerRef}
       className={cn(
-        ' scroller relative z-20  max-w-7xl overflow-hidden  [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]',
+        'mix-blend-luminosity dark:mix-blend-hard-light scroller relative z-20  max-w-7xl overflow-hidden  [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]',
         className
       )}
     >
@@ -96,8 +98,13 @@ export const InfiniteMovingReviews = ({
             pauseOnHover && 'hover:[animation-play-state:paused]'
           )}
         >
-          {items.map((item, idx) => (
-            <li
+          {items?.map((item, idx) => (
+            <Link
+              href={
+                item.contributorId
+                  ? `/contributors/${item.contributorId}`
+                  : `/products/${item.productId}`
+              }
               className={cn(
                 'w-[400px] h-[270px] max-w-full relative rounded-sm flex-shrink-0 md:w-[450px]',
                 style.paper,
@@ -109,51 +116,72 @@ export const InfiniteMovingReviews = ({
                   //     'linear-gradient(180deg, var(--slate-800), var(--slate-900)',
                 }
               }
-              key={item.name}
+              key={item.id}
             >
               <div className={style.textarea}>
-                <blockquote className={cn()}>
+                <blockquote dir="rtl" className={cn('text-right')}>
                   <div className="absolute w-full h-full top-0 left-0 ">
                     <div
                       aria-hidden="true"
                       className="user-select-none -z-1 pointer-events-none absolute -left-0.5 -top-0.5 h-[calc(100%_+_4px)] w-[calc(100%_+_4px)]"
                     ></div>
                     <span
-                      dir="rtl"
                       className={cn(
-                        'line-clamp-6 inline-block relative z-20 font-normal',
+                        'text-right overflow-hidden line-clamp-6 inline-block relative z-20 font-normal',
                         quoteClassName
                       )}
                     >
-                      {item.quote}
+                      {item.comment}
                     </span>
-                    <div
-                      dir="rtl"
-                      className="relative z-20  flex flex-row items-center"
-                    >
-                      <span className="flex flex-col gap-1">
+                    <div className="relative z-20  flex flex-row items-center">
+                      <div className="flex flex-col gap-1">
                         <span
                           className={cn(
-                            ' inline-block pr-4  font-normal',
+                            'flex gap-2 items-center  pr-4  font-normal',
                             nameClassName
                           )}
                         >
-                          {item.name}
-                        </span>
+                          <UserAvatar
+                            alt={item.User?.name}
+                            src={item.User?.image?.url}
+                          />
+                          {/* {item.name} */}
+                          {/* </span>
                         <span
                           className={cn(
                             'inline-block pr-4  font-normal',
                             nameClassName
                           )}
-                        >
-                          {item.title}
+                        > */}
+                          <Rating
+                            dir="ltr"
+                            value={item.rating}
+                            readOnly
+                            precision={0.5}
+                            defaultValue={5}
+                            icon={
+                              <StarIcon
+                                fontSize="inherit"
+                                className={cn(
+                                  'text-center text-yellow-500 fill-yellow-400 h-5 w-5 flex-shrink-0'
+                                )}
+                              />
+                            }
+                            emptyIcon={
+                              <StarIcon
+                                fontSize="inherit"
+                                className="text-gray-200 h-5 w-5 flex-shrink-0"
+                              />
+                            }
+                          />
+                          {/* {item.title} */}
                         </span>
-                      </span>
+                      </div>
                     </div>
                   </div>
                 </blockquote>
               </div>
-            </li>
+            </Link>
           ))}
         </ul>
       </div>

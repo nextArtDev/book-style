@@ -143,8 +143,8 @@ export const Header = () => {
       <p className="max-w-2xl text-base border-b border-black w-fit md:text-xl mt-8 dark:text-neutral-200">
         کتابفروشی و لوازم تحریر فردا
       </p>
-      <div className="absolute bg-light-bg dark:bg-dark-bg top-1 right-[50%] translate-x-[50%] w-fit px-1 h-fit text-rose-500 font-semibold ">
-        سهامی خاص
+      <div className="absolute bg-light-bg dark:bg-dark-bg top-0 right-[50%] translate-x-[50%] w-fit px-1 h-fit text-rose-500 font-semibold ">
+        نشر تخصصی
       </div>
     </div>
   )

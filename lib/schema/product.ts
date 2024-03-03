@@ -187,8 +187,8 @@ export const createServerProductSchema = z.object({
     // .regex(/^[\u0600-\u06FFa-zA-Z0-9_ ]+$/, {
     //   message: 'تنها حروف، اعداد و آندرلاین برای اسم مجاز است.',
     // })
-    .max(26, { message: 'شابک نمی‌تواند بیش از 26 حرف باشد.' })
-    .optional(),
+    .max(26, { message: 'شابک نمی‌تواند بیش از 26 حرف باشد.' }),
+  // .optional(),
   title: z
     .string()
     .min(1, { message: 'عنوان باید بیش از یک حرف باشد.' })

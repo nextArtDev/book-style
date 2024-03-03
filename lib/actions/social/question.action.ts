@@ -82,6 +82,7 @@ export async function getQuestions(params: GetQuestionsParams) {
 export async function createQuestion(params: CreateQuestionParams) {
   try {
     const user = await currentUser()
+    // console.log(user)
     if (!user) return
 
     const { title, content, tags, authorId, path } = params
