@@ -6,30 +6,30 @@ import { getBillboardsWithCategories } from '@/lib/queries/home/billboard'
 import { Separator } from '@/components/ui/separator'
 
 const navigation = {
-  solutions: [
-    { name: 'فلسفه غرب', href: '#' },
-    { name: 'فلسفه شرق', href: '#' },
-    { name: 'فلسفه اسلامی', href: '#' },
-    { name: 'منطق', href: '#' },
-  ],
-  support: [
-    { name: 'Pricing', href: '#' },
-    { name: 'Documentation', href: '#' },
-    { name: 'Guides', href: '#' },
-    { name: 'API Status', href: '#' },
-  ],
-  company: [
-    { name: 'About', href: '#' },
-    { name: 'Blog', href: '#' },
-    { name: 'Jobs', href: '#' },
-    { name: 'Press', href: '#' },
-    { name: 'Partners', href: '#' },
-  ],
-  legal: [
-    { name: 'Claim', href: '#' },
-    { name: 'Privacy', href: '#' },
-    { name: 'Terms', href: '#' },
-  ],
+  // solutions: [
+  //   { name: 'فلسفه غرب', href: '#' },
+  //   { name: 'فلسفه شرق', href: '#' },
+  //   { name: 'فلسفه اسلامی', href: '#' },
+  //   { name: 'منطق', href: '#' },
+  // ],
+  // support: [
+  //   { name: 'Pricing', href: '#' },
+  //   { name: 'Documentation', href: '#' },
+  //   { name: 'Guides', href: '#' },
+  //   { name: 'API Status', href: '#' },
+  // ],
+  // company: [
+  //   { name: 'About', href: '#' },
+  //   { name: 'Blog', href: '#' },
+  //   { name: 'Jobs', href: '#' },
+  //   { name: 'Press', href: '#' },
+  //   { name: 'Partners', href: '#' },
+  // ],
+  // legal: [
+  //   { name: 'Claim', href: '#' },
+  //   { name: 'Privacy', href: '#' },
+  //   { name: 'Terms', href: '#' },
+  // ],
   social: [
     {
       name: 'Facebook',
@@ -109,11 +109,11 @@ export default async function Footer() {
         {/* <div className="mx-auto max-w-7xl px-6 pb-8 pt-16 sm:pt-24 lg:px-8 lg:pt-32"> */}
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
           <div className="space-y-8">
-            <img
+            {/* <img
               className="h-7"
               src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
               alt="Company name"
-            />
+            /> */}
             {/* <Image
               height={28}
               width={28}
@@ -158,7 +158,7 @@ export default async function Footer() {
                     {billboard.categories.map((category, idx) => (
                       <li key={idx}>
                         <Link
-                          href={`/category/${category.id}`}
+                          href={`/categories/${category.id}`}
                           className={cn(
                             buttonVariants({
                               variant: 'ghost',

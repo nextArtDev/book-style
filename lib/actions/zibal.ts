@@ -47,7 +47,8 @@ export async function getZibal({
   try {
     const res = await zarinpal.PaymentRequest({
       Amount: totalPrice,
-      CallbackURL: 'http://localhost:3000/cart',
+      // CallbackURL: 'http://localhost:3000/cart',
+      CallbackURL: 'https://shafagh.iran.liara.run/cart',
       Description: 'کتابفروشی فردا',
       Email: 'hi@siamak.work',
       Mobile: '09120000000',
