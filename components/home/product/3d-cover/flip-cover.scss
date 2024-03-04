@@ -52,7 +52,7 @@
     box-shadow: 6px 6px 18px -2px rgba(0, 0, 0, 0.2),
         24px 28px 40px -6px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease-in-out;
-    transform: perspective(2000px) rotateY(-15deg) translateX(-10px) scaleX(0.94);
+    transform: perspective(2000px) rotateY(-12deg) translateX(-7px) scaleX(0.98);
     cursor: pointer;
 }
 
@@ -84,7 +84,7 @@
 
 .effect {
     position: absolute;
-    width: 18px;
+    width: 12px;
     height: 100%;
     // margin-right: auto;
     // margin-left: 16px;
@@ -116,3 +116,57 @@
 .book-image:hover .effect {
     margin-right: 14px;
 }
+
+
+///Paper cover book
+.paper-cover-book {
+            position: relative;
+            transform: perspective(70px) rotateY(1deg) scaleX(0.8);
+            transform-origin: left;
+    
+            .cover {
+                display: block;
+                width: 100%;
+                position: relative;
+                z-index: 1;
+            }
+    
+            &::before {
+                content: "";
+                display: block;
+                position: absolute;
+                right: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(-90deg, rgba(255, 255, 255, 0.418), #0000 7%);
+                z-index: 2;
+            }
+    
+            &::after {
+                content: "";
+                transform: perspective(70px) rotateY(-8deg);
+                transform-origin: right;
+                display: block;
+                position: absolute;
+                top: 0;
+                left: -12px;
+                width: 12px;
+                height: 100%;
+                background: linear-gradient(90deg, hsl(46deg 12% 95%), hsl(46deg 12% 86%));
+                // background: red url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACcAAAABCAIAAADSNCBJAAAAXklEQVR42iWMWwqAMAwEvf/h/LBS26QxbWPrAwSP4IoQlmWYzXDej7aDtHiWRdQnHf2C4oiltiAlrHmKNHMChPYXLgaOFGuAIHiCc0To8JHYqnUpGwT5zF2s535FrS9QrGVif7/eswAAAABJRU5ErkJggg==);
+                z-index: 2;
+                box-shadow: 0px 4px 5px 0 #0005;
+            }
+    
+            .paper-cover-shadow {
+                background: white;
+                position: absolute;
+                right: 6px;
+                height: 7px;
+                bottom: 0;
+                width: 100%;
+                transform: skew(55deg);
+                filter: drop-shadow(20px 0px 20px #000);
+            }
+        }

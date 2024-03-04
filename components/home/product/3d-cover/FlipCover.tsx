@@ -35,6 +35,16 @@ function FlipCover({ url, title, cover, className }: Props) {
           </div>
         </div>
       </div>
+      {/* <div className="paper-cover-book">
+        <Image
+          width={210}
+          height={230}
+          alt={title}
+          src={url}
+          className="cover object-cover w-full h-full  "
+        />
+        <div className="paper-cover-shadow"></div>
+      </div> */}
     </div>
   )
 }
