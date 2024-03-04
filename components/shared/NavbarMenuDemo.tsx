@@ -77,6 +77,12 @@ export function Navbar({ className, billboards }: NavbarProps) {
             </p>
           </Link>
           <Link
+            href={'/products'}
+            className={cn(buttonVariants({ variant: 'secondary' }), 'my-0')}
+          >
+            کتاب‌ها
+          </Link>
+          <Link
             href={'/dashboard'}
             className={cn(buttonVariants({ variant: 'secondary' }), 'my-0')}
           >
