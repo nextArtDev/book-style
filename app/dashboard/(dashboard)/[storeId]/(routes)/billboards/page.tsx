@@ -3,8 +3,9 @@ import { format } from 'date-fns-jalali'
 import { BillboardColumn } from './components/columns'
 
 import { BillboardClient } from './components/BillboardClient'
-import { getAllBillboards } from '@/lib/queries/dashboard/billboards'
+import { getAllBillboardsForBillboards } from '@/lib/queries/dashboard/billboards'
 import { notFound } from 'next/navigation'
+import { Billboard } from '@prisma/client'
 
 const BillboardsPage = async ({ params }: { params: { storeId: string } }) => {
   // const billboards = await prisma.billboard.findMany({
@@ -15,16 +16,20 @@ const BillboardsPage = async ({ params }: { params: { storeId: string } }) => {
   //     createdAt: 'desc',
   //   },
   // })
-  const billboards = await getAllBillboards(params.storeId)
+  const billboards = await getAllBillboardsForBillboards({
+    storeId: params.storeId,
+  })
 
   if (!billboards) {
     return notFound()
   }
-  const formattedBillboards: BillboardColumn[] = billboards.map((item) => ({
-    id: item.id,
-    label: item.label,
-    createdAt: format(item.createdAt, 'dd MMMM yyyy'),
-  }))
+  const formattedBillboards: BillboardColumn[] = billboards.map(
+    (item: Billboard) => ({
+      id: item.id,
+      label: item.label,
+      createdAt: format(item.createdAt, 'dd MMMM yyyy'),
+    })
+  )
 
   return (
     <div className="flex-col">
