@@ -59,12 +59,15 @@ export function GlobalSearchDriver() {
   return (
     <Drawer>
       <DrawerTrigger asChild>
-        <Button variant="outline" className="relative ">
+        <Button
+          variant="ghost"
+          className="relative bg-transparent outline-none  "
+        >
           <Image
             src={Search}
             alt="Search"
             fill
-            className="cursor-pointer p-1"
+            className="bg-transparent cursor-pointer p-1"
           />
         </Button>
       </DrawerTrigger>

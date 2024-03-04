@@ -31,7 +31,9 @@ export default async function Home() {
   // )
   return (
     <main className="flex-1 ">
-      <HeroParallax categories={categories} />
+      <div className="-mt-20">
+        <HeroParallax categories={categories} />
+      </div>
       <Quotes quotes={hotQuotes} />
       <div dir="ltr" className="w-[94vw] overflow-x-hidden">
         <SwipeCarousel categories={categories} />

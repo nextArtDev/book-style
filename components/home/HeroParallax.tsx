@@ -136,11 +136,11 @@ export const Header = () => {
         <Separator className="bg-transparent " />
         <Separator className="bg-black p-[1px] " />
       </div>
-      <h1 className="w-full text-center py-3 bg-gradient-to-r from-gray-600 via-black/55 to-gray-400 dark:from-yellow-600 dark:via-white/55 dark:to-yellow-400 inline-block text-transparent bg-clip-text text-2xl md:text-7xl font-bold  ">
+      <h1 className="w-full text-center py-3 bg-gradient-to-r from-gray-600 via-black/55 to-gray-400 dark:from-yellow-600 dark:via-white/55 dark:to-yellow-400 inline-block text-transparent bg-clip-text text-5xl md:text-7xl font-bold  ">
         کتابفروشی فردا <br />
       </h1>
       <Separator className="bg-black p-0.5 " />
-      <p className="max-w-2xl text-base border-b border-black w-fit md:text-xl mt-8 dark:text-neutral-200">
+      <p className="max-w-2xl text-center w-full text-xl border-b border-black  md:text-3xl py-4 dark:text-neutral-200">
         کتابفروشی و لوازم تحریر فردا
       </p>
       <div className="absolute bg-light-bg dark:bg-dark-bg top-0 right-[50%] translate-x-[50%] w-fit px-1 h-fit text-rose-500 font-semibold ">

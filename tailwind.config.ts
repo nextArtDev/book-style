@@ -22,7 +22,7 @@ const config = {
     },
     extend: {
       backgroundImage: {
-        'light-bg': "url('/images/light.webp')",
+        'light-bg': "url('/images/light-texture.webp')",
         'dark-bg': "url('/images/dark.webp')",
       },
       colors: {

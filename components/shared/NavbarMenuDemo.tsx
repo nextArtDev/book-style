@@ -88,7 +88,9 @@ export function Navbar({ className, billboards }: NavbarProps) {
           >
             شبکه اجتماعی
           </Link>
-          {/* <GlobalSearchDriver /> */}
+          <div className="mr-6">
+            <GlobalSearchDriver />
+          </div>
           {/* <Link href={'social'}>
           <ButtonBorderMagic>شبکه اجتماعی</ButtonBorderMagic>
         </Link> */}
