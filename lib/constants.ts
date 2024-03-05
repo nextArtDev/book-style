@@ -98,11 +98,11 @@ export const sidebarLinks: SidebarLink[] = [
     route: '/social/collection',
     label: 'کلکسیون',
   },
-  {
-    imgURL: '/assets/icons/suitcase.svg',
-    route: '/social/jobs',
-    label: 'شغلها',
-  },
+  // {
+  //   imgURL: '/assets/icons/suitcase.svg',
+  //   route: '/social/jobs',
+  //   label: 'شغلها',
+  // },
   {
     imgURL: '/assets/icons/tag.svg',
     route: '/social/tags',
@@ -323,16 +323,16 @@ export const homeSidebarLinks: SidebarLink[] = [
     route: '/billboards',
     label: 'گروه‌ها',
   },
-  {
-    imgURL: '/assets/icons/location.svg',
-    route: '/about-us',
-    label: 'درباره ما',
-  },
-  {
-    imgURL: '/assets/icons/contact.svg',
-    route: '/connect-us',
-    label: 'ارتباط با ما',
-  },
+  // {
+  //   imgURL: '/assets/icons/location.svg',
+  //   route: '/about-us',
+  //   label: 'درباره ما',
+  // },
+  // {
+  //   imgURL: '/assets/icons/contact.svg',
+  //   route: '/connect-us',
+  //   label: 'ارتباط با ما',
+  // },
   {
     imgURL: '/assets/icons/question.svg',
     route: '/dashboard',

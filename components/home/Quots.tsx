@@ -8,10 +8,10 @@ export function Quotes({ quotes }: { quotes: Question[] }) {
       <InfiniteMovingCards
         items={quotes}
         direction="left"
-        speed="normal"
+        speed="fast"
         className="text-xl text-right "
         itemClassName="yellowBg right-12 text-justify "
-        quoteClassName="pt-[4vh] text-black leading-[5.1vh]  "
+        quoteClassName="pt-[4vh] text-black !leading-[5.1vh] !tracking-tight "
         nameClassName="text-black/70 text-base "
       />
     </div>

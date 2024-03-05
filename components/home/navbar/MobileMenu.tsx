@@ -57,7 +57,7 @@ function MobileMenu({ billboards }: MobileMenuProps) {
             </SheetClose>
 
             {!user?.id && !user?.isVerified && (
-              <div className="flex flex-col gap-3 mt-4 overflow-y-scroll ">
+              <div className="flex flex-col gap-3 mt-4 ">
                 <SheetClose asChild>
                   <Link href={'/login'}>
                     <Button

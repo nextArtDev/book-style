@@ -2,6 +2,7 @@
 
 import { Golpa } from '@/lib/fonts'
 import { cn } from '@/lib/utils'
+import { Eye, Link2Icon } from 'lucide-react'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 
@@ -132,7 +133,7 @@ export const InfiniteMovingCards = ({
               <p
                 dir="rtl"
                 className={cn(
-                  'line-clamp-6 pr-8 overflow-hidden relative z-20 font-normal',
+                  'line-clamp-6 pr-8 text-sm md:text-base overflow-hidden relative z-20 font-normal',
                   quoteClassName
                 )}
                 dangerouslySetInnerHTML={{ __html: item.content }}
@@ -141,18 +142,17 @@ export const InfiniteMovingCards = ({
                 dir="rtl"
                 className="relative z-20 mt-6 flex flex-row items-center"
               >
-                <span className="flex flex-col gap-1">
-                  <span
+                <div className="flex flex-col gap-1">
+                  <div
                     className={cn(
-                      'mt-[2.9vh] inline-block pr-12  font-normal',
+                      ' text-center w-full px-4 underline underline-offset-4 underline-blue-100 mt-[2.9vh] text-xs font-semibold md:text-sm ',
                       nameClassName
                     )}
                   >
-                    <p></p>
                     {/* {item.name} */}
                     {'پست: '}
                     {item.title}
-                  </span>
+                  </div>
                   {/* <span
                     className={cn(
                       'inline-block pr-12  font-normal',
@@ -161,7 +161,7 @@ export const InfiniteMovingCards = ({
                   >
                     {item.title}
                   </span> */}
-                </span>
+                </div>
               </div>
             </blockquote>
           </Link>
