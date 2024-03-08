@@ -36,7 +36,7 @@ const ProductDialog: FC<pageProps> = ({ product, rate }) => {
         <DialogContent className="rounded-md bg-transparent border-none  ">
           <Rolling
             imageUrl={product.images[0].url}
-            className="max-h-full text-xs flex flex-col text-center"
+            className="max-h-full text-xs  text-center "
           >
             <div className="flex flex-col space-y-4 p-2 pt-4 items-center ">
               <p className=" font-bold text-sm md:text-base">{product.title}</p>
@@ -69,17 +69,17 @@ const ProductDialog: FC<pageProps> = ({ product, rate }) => {
                 {product.price && <Currency value={+product?.price} />}
                 تومان
               </div>
-              <div className="text-xs  md:text-sm flex items-center gap-0.5">
+              <div className="text-xs  md:text-sm mt-auto flex flex-col items-center gap-1">
                 <AddToCart product={product} />
+                <Button
+                  variant={'secondary'}
+                  onClick={() =>
+                    window.location.assign(`/products/${product.id}`)
+                  }
+                >
+                  مشاهده جزئیات
+                </Button>
               </div>
-              <Button
-                variant={'secondary'}
-                onClick={() =>
-                  window.location.assign(`/products/${product.id}`)
-                }
-              >
-                مشاهده
-              </Button>
             </div>
           </Rolling>
           {/* <div className="w-full">

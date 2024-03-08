@@ -8,6 +8,9 @@ interface RollingProps {
   imageUrl?: string
   className?: string
 }
+interface CustomElementStyleProperties extends React.CSSProperties {
+  '--imageUrl'?: string
+}
 
 const Rolling: FC<RollingProps> = ({ children, imageUrl, className }) => {
   const ref = useRef(null)
@@ -16,11 +19,13 @@ const Rolling: FC<RollingProps> = ({ children, imageUrl, className }) => {
   return (
     <div className={className}>
       <motion.figure
-        className="imageRoll  "
+        className="imageRoll "
         ref={ref}
-        style={{
-          '--imageUrl': `url(${imageUrl || ''})`,
-        }}
+        style={
+          {
+            '--imageUrl': `url(${imageUrl || ''})`,
+          } as CustomElementStyleProperties
+        }
       >
         <motion.i className={` ${isInView ? 'in-view' : ''}`}>
           <i>
