@@ -3,6 +3,8 @@ const {
   default: flattenColorPalette,
 } = require('tailwindcss/lib/util/flattenColorPalette')
 
+const maxImages = 60
+
 const config = {
   darkMode: ['class'],
   content: [
@@ -24,6 +26,12 @@ const config = {
       backgroundImage: {
         'light-bg': "url('/images/light-texture.webp')",
         'dark-bg': "url('/images/dark.webp')",
+        ...Object.fromEntries(
+          [...Array(maxImages)].map((_, index) => [
+            `image-${index + 1}`,
+            `var(--imageUrl-${index + 1})`,
+          ])
+        ),
       },
       colors: {
         border: 'hsl(var(--border))',
