@@ -4,7 +4,7 @@ import * as z from 'zod'
 import { PhoneSchema, RegisterSchema } from '@/schemas'
 import { sendSms, verifySms } from './sms'
 import bcrypt from 'bcryptjs'
-import { getUserById, getUserByPhoneNumber } from '@/data/user'
+import { getUserById, getUserByPhoneNumber } from '@/components/home/data/user'
 import { prisma } from '@/lib/prisma'
 
 // import { db } from "@/lib/db";

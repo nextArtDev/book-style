@@ -5,7 +5,7 @@ import Credentials from 'next-auth/providers/credentials'
 // import Google from 'next-auth/providers/google'
 
 import { LoginSchema } from '@/schemas'
-import { getUserByPhoneNumber } from './data/user'
+import { getUserByPhoneNumber } from './components/home/data/user'
 // import { getUserByEmail } from '@/data/user'
 
 export default {

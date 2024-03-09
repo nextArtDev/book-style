@@ -12,6 +12,7 @@ import {
 } from '@/lib/queries/dashboard/billboards'
 import { getAllCategories } from '@/lib/queries/home/category'
 import { getPopularProducts } from '@/lib/queries/home/products'
+import CarouselFlipBook from '@/components/home/CarouselFlipBook'
 
 export default async function Home() {
   const categories = await getAllCategories({})
@@ -38,6 +39,7 @@ export default async function Home() {
       <div dir="ltr" className="w-[94vw] overflow-x-hidden">
         <SwipeCarousel categories={categories} />
       </div>
+      <CarouselFlipBook categories={categories} />
       <FeaturedProducts />
       <CardParallax billboards={billboards} />
       <HighlightReviews hotReviews={hotReviews} />

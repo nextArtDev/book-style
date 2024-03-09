@@ -13,7 +13,7 @@ import { signIn } from '@/auth'
 //   sendTwoFactorTokenEmail,
 // } from "@/lib/mail";
 import { DEFAULT_LOGIN_REDIRECT } from '@/routes'
-import { getUserByPhoneNumber } from '@/data/user'
+import { getUserByPhoneNumber } from '@/components/home/data/user'
 import { sendSms, verifySms } from './sms'
 // import {
 //   generateVerificationToken,

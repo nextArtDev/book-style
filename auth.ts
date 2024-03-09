@@ -3,9 +3,9 @@ import { Role } from '@prisma/client'
 import { PrismaAdapter } from '@auth/prisma-adapter'
 
 import authConfig from '@/auth.config'
-import { getUserById } from '@/data/user'
+import { getUserById } from '@/components/home/data/user'
 import { prisma } from './lib/prisma'
-import { getImageById } from './data/image'
+import { getImageById } from './components/home/data/image'
 // import { getTwoFactorConfirmationByUserId } from '@/data/two-factor-confirmation'
 // import { getAccountByUserId } from './data/account'
 

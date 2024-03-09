@@ -6,7 +6,7 @@ import bcrypt from 'bcryptjs'
 import { update } from '@/auth'
 
 import { SettingsSchema } from '@/schemas'
-import { getUserByPhoneNumber, getUserById } from '@/data/user'
+import { getUserByPhoneNumber, getUserById } from '@/components/home/data/user'
 import { currentUser } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 
