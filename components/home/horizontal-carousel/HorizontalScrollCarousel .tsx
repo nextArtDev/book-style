@@ -30,12 +30,6 @@ const HorizontalScrollCarousel = ({
   const xTransform: string = rtl ? '75%' : '-75%'
   const x = useTransform(scrollYProgress, [0, 1], ['1%', xTransform])
 
-  //   const geminiTransform: number[] = rtl ? [1.2,0.2] : [0.2, 1.2]
-  //   const pathLengthFirst = useTransform(scrollYProgress, [0, 0.8], [0.2, 1.2])
-  //   const pathLengthSecond = useTransform(scrollYProgress, [0, 0.8], [0.15, 1.2])
-  //   const pathLengthThird = useTransform(scrollYProgress, [0, 0.8], [0.1, 1.2])
-  //   const pathLengthFourth = useTransform(scrollYProgress, [0, 0.8], [0.05, 1.2])
-  //   const pathLengthFifth = useTransform(scrollYProgress, [0, 0.8], [0, 1.2])
   const pathLengthFirst = useTransform(scrollYProgress, [0, 0.8], [0.2, 1.2])
   const pathLengthSecond = useTransform(scrollYProgress, [0, 0.8], [0.15, 1.2])
   const pathLengthThird = useTransform(scrollYProgress, [0, 0.8], [0.1, 1.2])

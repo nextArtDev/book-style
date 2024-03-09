@@ -19,7 +19,7 @@ const ProductTable: FC<ProductTableProps> = ({ product }) => {
   return (
     <div
       dir="rtl"
-      className="bg-secondary/10 backdrop-blur-sm rounded-md p-4  mx-8  "
+      className="yellowBg text-primary dark:text-secondary backdrop-blur-sm rounded-md p-4  mx-8  "
     >
       <Table>
         {/* <TableCaption>مشخصات کتاب.</TableCaption> */}

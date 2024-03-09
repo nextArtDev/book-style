@@ -40,7 +40,9 @@ const page: FC<pageProps> = async ({ params: { contributorId } }) => {
         beforeRated={beforeRated}
         rate={contributor.rate}
       />
-      <RelatedProducts contributor={contributor.contributor} />
+      <div className="">
+        <RelatedProducts contributor={contributor.contributor} />
+      </div>
     </div>
   )
 }

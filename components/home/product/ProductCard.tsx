@@ -43,7 +43,7 @@ const ProductCard: FC<ProductCardProps> = ({ products }) => {
 
           <HomeFilters filters={ProductPageFilters} />
         </div>
-        <div className=" mx-4 grid grid-cols-1 sm:grid-cols-2 sm:mx-0 md:grid-cols-3 lg:grid-cols-4">
+        <div className=" mx-0 grid grid-cols-2 sm:grid-cols-2 sm:mx-0 md:grid-cols-3 lg:grid-cols-4">
           {products.map((product) => (
             <Link
               scroll={false}
@@ -51,6 +51,7 @@ const ProductCard: FC<ProductCardProps> = ({ products }) => {
               href={`/products/${product.id}`}
             >
               <FlipCover
+                className="p-2"
                 url={product.images?.[0].url}
                 title={product.title}
                 cover={product?.cover}

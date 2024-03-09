@@ -14,6 +14,7 @@ import { LuLogIn } from 'react-icons/lu'
 import GlobalSearch from '@/components/social/search/GlobalSearch'
 import { GlobalSearchDriver } from '@/components/shared/GlobalSearchDriver'
 import { Navbar as NavbarDemo } from '@/components/shared/NavbarMenuDemo'
+import CartItems from '../card-parallax/CartItems'
 
 type Props = {}
 const navItems = [
@@ -41,8 +42,11 @@ async function Navbar({}: Props) {
   const contributors = await getAllContributors()
   // console.log(contributors)
   return (
-    <div className="flex w-full items-center  ">
+    <div className="relative flex w-full items-center ">
       <MobileMenu />
+      <div className="z-20 absolute top-1 left-1 md:hidden">
+        <CartItems />
+      </div>
       {/* <DesktopNavigationMenu
         contributors={contributors}
         billboards={billboards}
@@ -51,7 +55,6 @@ async function Navbar({}: Props) {
       <div className="relative w-full max-h-14">
         <FloatingNav navItems={navItems} />
       </div>
-
       {/* <div className=" flex gap-x-4 items-center justify-between mr-auto ml-4 ">
 
       </div> */}
