@@ -282,11 +282,11 @@ abbr[title] {
 
 /* Photocopied */
 .photocopied {
-  width: fit-content;
+  /* width: fit-content;
   position: relative;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
   overflow: hidden;
   margin: 0 auto;
   background: #fff;

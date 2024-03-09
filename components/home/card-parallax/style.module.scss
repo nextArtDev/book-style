@@ -436,7 +436,7 @@ $_precision: 10;
 /////////////////////////////////////////////////////
 $width: 8rem;
 
-.paper-corner {
+.paperCorner {
     background-color: #FFFF8D;
     width: $width;
     height: 4rem;
@@ -481,6 +481,7 @@ $width: 8rem;
     }
 
     &:before {
+        // border-color: #e2d8a7 #e2d8a7 transparent transparent;
         border-color: #e2d8a7 #e2d8a7 transparent transparent;
     }
 
