@@ -42,7 +42,7 @@ async function Navbar({}: Props) {
   // console.log(contributors)
   return (
     <div className="flex w-full items-center  ">
-      <MobileMenu billboards={billboards} />
+      <MobileMenu />
       {/* <DesktopNavigationMenu
         contributors={contributors}
         billboards={billboards}

@@ -22,12 +22,12 @@ import { useCurrentUser } from '@/hooks/use-current-user'
 import { homeSidebarLinks } from '@/lib/constants'
 
 interface MobileMenuProps {
-  billboards:
-    | (Billboard & { categories: { id: string; name: string }[] })[]
-    | null
+  // billboards:
+  //   | (Billboard & { categories: { id: string; name: string }[] })[]
+  //   | null
 }
 
-function MobileMenu({ billboards }: MobileMenuProps) {
+function MobileMenu() {
   // console.log(billboards.map((bi) => bi.categories))
   // console.log(billboards)
   const user = useCurrentUser()
@@ -39,9 +39,9 @@ function MobileMenu({ billboards }: MobileMenuProps) {
           <Image
             src={Hamburger}
             alt="menu"
-            width={36}
-            height={36}
-            className="cursor-pointer p-1 m-1 md:hidden invert dark:invert-0 "
+            width={40}
+            height={40}
+            className="cursor-pointer m-2 md:hidden invert dark:invert-0 "
           />
         </SheetTrigger>
         <SheetContent side={'right'} className="">

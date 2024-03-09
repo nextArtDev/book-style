@@ -52,14 +52,14 @@ const CarouselFlipBook: FC<CarouselFlipBookProps> = ({ categories }) => {
   return (
     <section
       className={cn(
-        ' overflow-hidden px-8 mx-auto w-full flex items-center justify-center'
+        'max-w-5xl overflow-hidden px-8 mx-auto w-full flex items-center justify-center'
       )}
     >
       {/* @ts-ignore */}
       <HTMLFlipBook
         // className="flip-book"
 
-        style={{ boxShadow: '0 0 20px 0 rgba(0, 0, 0, 0.5)' }}
+        // style={{ boxShadow: '0 0 20px 0 rgba(0, 0, 0, 0.5)' }}
         onFlip={handlePageTurn}
         ref={book}
         // width={300}
@@ -80,21 +80,26 @@ const CarouselFlipBook: FC<CarouselFlipBookProps> = ({ categories }) => {
           <div
             key={category.id}
             style={{
-              backgroundColor: 'hsl(35, 55, 98)',
-              color: 'hsl(35, 35, 35)',
-              border: 'solid 1px hsl(35, 20, 70)',
+              backgroundColor: '#fdfaf7',
+              color: '#785e3a',
+              border: 'solid 1px #c2b5a3',
               boxShadow: `inset ${
                 i % 2 === 0 ? '7px' : '-7px'
               } 0 30px -7px rgba(0, 0, 0, 0.4)`,
             }}
-            className="relative mix-blend-multiply bg-[hsl(35, 55, 98)]   "
+            // bg-[#fefefe]
+            className="photocopied relative border border-[#c2b5a3] grid grid-cols-2 dark:bg-light-bg bg-dark-bg "
           >
-            <Image
-              className="object-cover "
-              fill
-              src={category.image?.url || ''}
-              alt={category.name}
-            />
+            <div className=" relative p-2 overflow-hidden w-full h-1/2">
+              <Image
+                className="object-cover  rounded-md"
+                fill
+                src={category.image?.url || ''}
+                alt={category.name}
+              />
+            </div>
+
+            <div>{category.name}</div>
           </div>
         ))}
       </HTMLFlipBook>

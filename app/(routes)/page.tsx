@@ -36,9 +36,9 @@ export default async function Home() {
         <HeroParallax categories={categories} />
       </div>
       <Quotes quotes={hotQuotes} />
-      <div dir="ltr" className="w-[94vw] overflow-x-hidden">
+      {/* <div dir="ltr" className="w-[94vw] overflow-x-hidden">
         <SwipeCarousel categories={categories} />
-      </div>
+      </div> */}
       <CarouselFlipBook categories={categories} />
       <FeaturedProducts />
       <CardParallax billboards={billboards} />

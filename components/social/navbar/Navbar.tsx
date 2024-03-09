@@ -24,7 +24,7 @@ const Navbar = (props: Props) => {
           </p>
         </Link>
       </div>
-      <div className="min-w-[350px]">
+      <div className="min-w-sm">
         <GlobalSearch social={true} />
       </div>
       <div className="flex-between gap-5">
