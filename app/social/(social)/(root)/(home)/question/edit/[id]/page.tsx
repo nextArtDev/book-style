@@ -7,15 +7,15 @@ import Question from '@/components/social/forms/Question'
 import { getQuestionById } from '@/lib/actions/social/question.action'
 import { currentUser } from '@/lib/auth'
 import { ParamsProps } from '@/types/social'
-import { notFound } from 'next/navigation'
+import { notFound, redirect } from 'next/navigation'
 import { FC } from 'react'
 
 const page: FC<ParamsProps> = async ({ params }) => {
   // const {userId} = auth();
   const user = await currentUser()
-  if (!user) return notFound()
+  if (!user) redirect('/login')
   const userId = user.id
-  if (!userId) return notFound()
+  if (!userId) redirect('/login')
 
   // const mongoUser = await getUserByID({ userId })
   const result = await getQuestionById({ questionId: params.id })

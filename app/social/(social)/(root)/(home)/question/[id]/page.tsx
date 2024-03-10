@@ -9,7 +9,7 @@
 // import { getTimestamp } from '@/lib/utils'
 import Image from 'next/image'
 import Link from 'next/link'
-import { notFound } from 'next/navigation'
+import { notFound, redirect } from 'next/navigation'
 import React from 'react'
 import userImage from '@/public/assets/icons/user.svg'
 import { getQuestionById } from '@/lib/actions/social/question.action'
@@ -31,7 +31,7 @@ const page = async ({ params, searchParams }: Props) => {
   const result = await getQuestionById({ questionId: params.id })
 
   const user = await currentUser()
-  if (!user) return
+  if (!user) return redirect('/login')
   const userId = user.id
 
   // const {userId} = auth()

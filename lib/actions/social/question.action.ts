@@ -14,6 +14,7 @@ import { revalidatePath } from 'next/cache'
 
 import { prisma } from '@/lib/prisma'
 import { currentUser } from '@/lib/auth'
+import { redirect } from 'next/navigation'
 
 export async function getQuestions(params: GetQuestionsParams) {
   try {
@@ -83,7 +84,7 @@ export async function createQuestion(params: CreateQuestionParams) {
   try {
     const user = await currentUser()
     // console.log(user)
-    if (!user) return
+    if (!user) redirect('/login')
 
     const { title, content, tags, authorId, path } = params
     // console.log({ title, content, tags, authorId, path })

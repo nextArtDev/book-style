@@ -8,7 +8,7 @@ import Profile from '@/components/social/forms/Profile'
 import { getUserByID } from '@/lib/actions/social/user.action'
 import { currentUser } from '@/lib/auth'
 import { ParamsProps } from '@/types/social'
-import { notFound } from 'next/navigation'
+import { notFound, redirect } from 'next/navigation'
 import { FC } from 'react'
 
 const page: FC<ParamsProps> = async ({ params }) => {
@@ -16,7 +16,7 @@ const page: FC<ParamsProps> = async ({ params }) => {
   // const userId = '12346'
   const user = await currentUser()
   const userId = user?.id
-  if (!userId) return notFound()
+  if (!userId) redirect('/login')
 
   const dbUser = await getUserByID({ userId })
   // const result = await getQuestionById({ questionId: params.id })

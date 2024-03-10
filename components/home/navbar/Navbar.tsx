@@ -44,7 +44,7 @@ async function Navbar({}: Props) {
   return (
     <div className="relative flex w-full items-center ">
       <MobileMenu />
-      <div className="z-20 absolute top-1 left-1 md:hidden">
+      <div className="z-20 fixed top-1 left-1.5 md:hidden">
         <CartItems />
       </div>
       {/* <DesktopNavigationMenu
