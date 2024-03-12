@@ -10,7 +10,7 @@ export const SettingsSchema = z
     phone: z.optional(
       z
         .string()
-        .regex(new RegExp('^09\\d{9}$'), {
+        .regex(new RegExp('^(09|۰۹)\\d{9}$'), {
           message: 'شماره موبایل معتبر نیست.',
         })
         .regex(
@@ -59,7 +59,7 @@ export const NewPasswordSchema = z.object({
 export const ResetSchema = z.object({
   phone: z
     .string()
-    .regex(new RegExp('^09\\d{9}$'), {
+    .regex(new RegExp('^(09|۰۹)\\d{9}$'), {
       message: 'شماره موبایل معتبر نیست.',
     })
     .regex(new RegExp('^[+]?[(]?[0-9]{3}[)]?[-s.]?[0-9]{3}[-s.]?[0-9]{4,6}$'), {
@@ -70,7 +70,7 @@ export const ResetSchema = z.object({
 export const LoginSchema = z.object({
   phone: z
     .string()
-    .regex(new RegExp('^09\\d{9}$'), {
+    .regex(new RegExp('^(09|۰۹)\\d{9}$'), {
       message: 'شماره موبایل معتبر نیست.',
     })
     .regex(new RegExp('^[+]?[(]?[0-9]{3}[)]?[-s.]?[0-9]{3}[-s.]?[0-9]{4,6}$'), {
@@ -84,7 +84,7 @@ export const LoginSchema = z.object({
 export const RegisterSchema = z.object({
   phone: z
     .string()
-    .regex(new RegExp('^09\\d{9}$'), {
+    .regex(new RegExp('^(09|۰۹)\\d{9}$'), {
       message: 'شماره موبایل معتبر نیست.',
     })
     .regex(new RegExp('^[+]?[(]?[0-9]{3}[)]?[-s.]?[0-9]{3}[-s.]?[0-9]{4,6}$'), {

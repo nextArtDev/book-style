@@ -56,123 +56,148 @@ const RelatedProducts: FC<RelatedProductsProps> = ({ contributor }) => {
   }))
   return (
     <div>
-      <Tabs dir="rtl" defaultValue={defaultValue} className="w-full p-8 ">
-        <TabsList>
+      <Tabs
+        dir="rtl"
+        defaultValue={defaultValue}
+        className="w-full overflow-x-hidden my-8 -mr-2 "
+      >
+        <TabsList className="mx-4">
           {contributor?.writer.length > 0 && (
-            <TabsTrigger value="نویسنده">نویسنده</TabsTrigger>
+            <TabsTrigger className="w-full" value="نویسنده">
+              نویسنده
+            </TabsTrigger>
           )}
           {contributor?.Translator.length > 0 && (
-            <TabsTrigger value="مترجم">مترجم</TabsTrigger>
+            <TabsTrigger className="w-full" value="مترجم">
+              مترجم
+            </TabsTrigger>
           )}
           {contributor?.editor.length > 0 && (
-            <TabsTrigger value={'ویراستار'}>ویراستار</TabsTrigger>
+            <TabsTrigger className="w-full" value={'ویراستار'}>
+              ویراستار
+            </TabsTrigger>
           )}
           {contributor?.photographer.length > 0 && (
-            <TabsTrigger value={'عکاس'}>عکاس</TabsTrigger>
+            <TabsTrigger className="w-full" value={'عکاس'}>
+              عکاس
+            </TabsTrigger>
           )}
           {contributor.illustrator.length > 0 && (
-            <TabsTrigger value={'تصویرساز'}>تصویرساز</TabsTrigger>
+            <TabsTrigger className="w-full" value={'تصویرساز'}>
+              تصویرساز
+            </TabsTrigger>
           )}
         </TabsList>
         {contributor.writer && (
           <TabsContent
-            className="flex gap-2 flex-wrap min-w-24  "
+            className=" mx-0 grid grid-cols-2 sm:grid-cols-2 sm:mx-0 md:grid-cols-3 lg:grid-cols-4"
             value="نویسنده"
           >
-            <HorizontalScrollCarousel
+            {/* <HorizontalScrollCarousel
               // @ts-ignore
               cards={writerCards}
               rtl={true}
-              className="overflow-x-hidden"
-            />
-            {/* {contributor.writer.map((writer) => (
+              className=""
+            /> */}
+            {contributor.writer.map((writer) => (
               <Link key={writer.id} href={`/products/${writer.id}`}>
                 <FlipCover
                   title={writer.title}
                   cover={writer.cover}
                   url={writer.images?.[0].url!}
+                  className="p-2"
                 />
               </Link>
-            ))} */}
+            ))}
           </TabsContent>
         )}
         {contributor.Translator && (
-          <TabsContent className="" value="مترجم">
-            <HorizontalScrollCarousel
+          <TabsContent
+            className=" mx-0 grid grid-cols-2 sm:grid-cols-2 sm:mx-0 md:grid-cols-3 lg:grid-cols-4"
+            value="مترجم"
+          >
+            {/* <HorizontalScrollCarousel
               cards={translatorCards}
               rtl={true}
-              className="overflow-x-hidden"
-            />
-            {/* {contributor.Translator.map((Translator) => (
+              className=""
+            /> */}
+            {contributor.Translator.map((Translator) => (
               <Link key={Translator.id} href={`/products/${Translator.id}`}>
                 <FlipCover
                   title={Translator.title}
                   cover={Translator.cover}
                   url={Translator.images?.[0].url!}
+                  className="p-2"
                 />
               </Link>
-            ))} */}
+            ))}
           </TabsContent>
         )}
         {contributor.editor && (
           <TabsContent
-            className="flex gap-2 flex-wrap min-w-24  "
+            className=" mx-0 grid grid-cols-2 sm:grid-cols-2 sm:mx-0 md:grid-cols-3 lg:grid-cols-4"
             value="ویراستار"
           >
-            <HorizontalScrollCarousel
+            {/* <HorizontalScrollCarousel
               cards={editorCards}
               rtl={true}
-              className="overflow-x-hidden"
-            />
-            {/* {contributor.editor.map((editor) => (
+              className=""
+            /> */}
+            {contributor.editor.map((editor) => (
               <Link key={editor.id} href={`/products/${editor.id}`}>
                 <FlipCover
                   title={editor.title}
                   cover={editor.cover}
                   url={editor.images?.[0].url!}
+                  className="p-2"
                 />
               </Link>
-            ))} */}
+            ))}
           </TabsContent>
         )}
         {contributor.photographer && (
-          <TabsContent className="flex gap-2 flex-wrap min-w-24  " value="عکاس">
-            <HorizontalScrollCarousel
+          <TabsContent
+            className=" mx-0 grid grid-cols-2 sm:grid-cols-2 sm:mx-0 md:grid-cols-3 lg:grid-cols-4"
+            value="عکاس"
+          >
+            {/* <HorizontalScrollCarousel
               cards={photographerCards}
               rtl={true}
-              className="overflow-x-hidden"
-            />
-            {/* {contributor.photographer.map((photographer) => (
+              className=""
+            /> */}
+            {contributor.photographer.map((photographer) => (
               <Link key={photographer.id} href={`/products/${photographer.id}`}>
                 <FlipCover
                   title={photographer.title}
                   cover={photographer.cover}
                   url={photographer.images?.[0].url!}
+                  className="p-2"
                 />
               </Link>
-            ))} */}
+            ))}
           </TabsContent>
         )}
         {contributor.illustrator && (
           <TabsContent
-            className="flex gap-2 flex-wrap min-w-24  "
+            className=" mx-0 grid grid-cols-2 sm:grid-cols-2 sm:mx-0 md:grid-cols-3 lg:grid-cols-4"
             value="تصویرساز"
           >
             {' '}
-            <HorizontalScrollCarousel
+            {/* <HorizontalScrollCarousel
               cards={illustratorCards}
               rtl={true}
-              className="overflow-x-hidden"
-            />
-            {/* {contributor.illustrator.map((illustrator) => (
+              className=""
+            /> */}
+            {contributor.illustrator.map((illustrator) => (
               <Link key={illustrator.id} href={`/products/${illustrator.id}`}>
                 <FlipCover
                   title={illustrator.title}
                   cover={illustrator.cover}
                   url={illustrator.images?.[0].url!}
+                  className="p-2"
                 />
               </Link>
-            ))} */}
+            ))}
           </TabsContent>
         )}
       </Tabs>

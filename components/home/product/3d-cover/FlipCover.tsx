@@ -50,3 +50,18 @@ function FlipCover({ url, title, cover, className }: Props) {
 }
 
 export default FlipCover
+
+export function PaperCover({ url, title, cover, className }: Props) {
+  return (
+    <div className={(cn('paper-cover-book'), className)}>
+      <Image
+        width={210}
+        height={230}
+        alt={title}
+        src={url}
+        className="cover object-cover w-full h-full  "
+      />
+      <div className="paper-cover-shadow"></div>
+    </div>
+  )
+}

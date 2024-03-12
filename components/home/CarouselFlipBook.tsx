@@ -15,7 +15,7 @@ interface CarouselFlipBookProps {
 const CarouselFlipBook: FC<CarouselFlipBookProps> = ({ categories }) => {
   const book = useRef<any>(null)
   const [canFlip, setCanFlip] = useState(true)
-  const flipInterval = 2000
+  const flipInterval = 1000
   const [userInteracted, setUserInteracted] = useState(false)
 
   useEffect(() => {
