@@ -12,6 +12,7 @@ import { Button } from '@/components/ui/button'
 import AddToCart from '@/components/home/product/AddToCart'
 import RateStar from '@/components/home/RateStar'
 import Rolling from '@/components/home/rolling-cover/Rolling'
+import { getRandomNaturalNumber } from '@/lib/utils'
 
 interface pageProps {
   product: SingleProductFullStructure
@@ -23,6 +24,8 @@ const ProductDialog: FC<pageProps> = ({ product, rate }) => {
   const onDismiss = () => {
     router.back()
   }
+  const randomVariant = getRandomNaturalNumber()
+  const highlightVariantClass = `highlight-variant-${randomVariant}`
   return (
     <div>
       <Dialog
@@ -39,7 +42,9 @@ const ProductDialog: FC<pageProps> = ({ product, rate }) => {
             className="max-h-full text-xs  text-center "
           >
             <div className="flex flex-col space-y-4 p-2 pt-4 items-center ">
-              <p className=" font-bold text-sm md:text-base">{product.title}</p>
+              <p className=" font-bold text-sm md:text-base highlight highlight-red-400 ${highlightVariantClass} px-1">
+                {product.title}
+              </p>
               <p className="text-xs md:text-sm">{product.subTitle}</p>
               {product.Reviews.length > 0 && rate && (
                 <RateStar rate={rate} reviewCounts={product.Reviews.length} />

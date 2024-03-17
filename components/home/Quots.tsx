@@ -11,7 +11,7 @@ export function Quotes({ quotes }: { quotes: Question[] }) {
         speed="fast"
         className="text-xl text-right "
         itemClassName="yellowBg right-12 text-justify "
-        quoteClassName="pt-[4vh] text-black !leading-[5.1vh] !tracking-tight "
+        quoteClassName="pt-[4vh] text-black !leading-[4.9vh] !tracking-tight "
         nameClassName="text-black/70 text-base "
       />
     </div>

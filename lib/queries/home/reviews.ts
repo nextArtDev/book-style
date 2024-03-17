@@ -27,6 +27,7 @@ export type ReviewWithUserImage = {
   rating: number
   contributorId: string | null
   productId: string | null
+  created_at: Date
   User: { image: { url: string } | null; name: string } | null
 
   // Other properties from the Review entity that you want to include
@@ -42,6 +43,7 @@ export async function getHotReviews(): Promise<ReviewWithUserImage[]> {
         comment: true,
         rating: true,
         contributorId: true,
+        created_at: true,
         productId: true,
         User: {
           select: {

@@ -198,3 +198,7 @@ export const productsAverageRating = (
   // Sort products by average rating in descending order
   productsWithAvgRating.sort((a, b) => b.avgRating - a.avgRating)
 }
+
+export function getRandomNaturalNumber(): number {
+  return Math.floor(Math.random() * 20) + 1
+}

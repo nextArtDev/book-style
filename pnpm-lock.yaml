@@ -292,6 +292,9 @@ devDependencies:
   tailwindcss:
     specifier: ^3.4.1
     version: 3.4.1
+  tailwindcss-highlights:
+    specifier: ^1.0.0
+    version: 1.0.0(tailwindcss@3.4.1)
   typescript:
     specifier: ^5.3.3
     version: 5.3.3
@@ -7632,6 +7635,14 @@ packages:
     dependencies:
       tailwindcss: 3.4.1
     dev: false
+
+  /tailwindcss-highlights@1.0.0(tailwindcss@3.4.1):
+    resolution: {integrity: sha512-sA7QU493tb2gNMsVm1bV5UrqmFbdNg+mkPUF8xy8xxekQtj1GgOcL3uyqs8DQAoeMyVM1Hz/hHSvyI4ORvar3g==}
+    peerDependencies:
+      tailwindcss: ^3.1.8
+    dependencies:
+      tailwindcss: 3.4.1
+    dev: true
 
   /tailwindcss@3.4.1:
     resolution: {integrity: sha512-qAYmXRfk3ENzuPBakNK0SRrUDipP8NQnEY6772uDhflcQz5EhRdD7JNZxyrFHVQNCwULPBn6FNPp9brpO7ctcA==}

@@ -2,7 +2,8 @@
 
 import { Golpa } from '@/lib/fonts'
 import { cn } from '@/lib/utils'
-import { Eye, Link2Icon } from 'lucide-react'
+
+import { ExternalLink } from 'lucide-react'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 
@@ -97,7 +98,7 @@ export const InfiniteMovingCards = ({
       dir="ltr"
       ref={containerRef}
       className={cn(
-        'mix-blend-luminosity dark:mix-blend-hard-light scroller relative z-20  max-w-7xl overflow-hidden  [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]',
+        'dark:mix-blend-hard-light scroller relative z-20  max-w-7xl overflow-hidden  [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]',
         className
       )}
     >
@@ -125,7 +126,7 @@ export const InfiniteMovingCards = ({
             }
             key={item.id}
           >
-            <blockquote>
+            <blockquote className="flex flex-col">
               <div
                 aria-hidden="true"
                 className="user-select-none -z-1 pointer-events-none absolute -left-0.5 -top-0.5 h-[calc(100%_+_4px)] w-[calc(100%_+_4px)]"
@@ -133,7 +134,7 @@ export const InfiniteMovingCards = ({
               <p
                 dir="rtl"
                 className={cn(
-                  'line-clamp-6 pr-8 text-sm md:text-base overflow-hidden relative z-20 font-normal',
+                  'flex-1 line-clamp-6 pr-8 text-xs md:text-sm overflow-hidden relative z-20 font-normal',
                   quoteClassName
                 )}
                 dangerouslySetInnerHTML={{ __html: item.content }}
@@ -145,12 +146,18 @@ export const InfiniteMovingCards = ({
                 <div className="flex flex-col gap-1">
                   <div
                     className={cn(
-                      ' text-center w-full px-4 underline underline-offset-4 underline-blue-100 mt-[2.9vh] text-xs font-semibold md:text-sm ',
-                      nameClassName
+                      'highlight w-full px-4 py-3 mt-[2.9vh] text-xs font-semibold md:text-sm flex justify-center gap-1 items-center mx-8  ',
+                      nameClassName,
+                      idx % 3 === 0
+                        ? 'highlight-indigo-500 dark:highlight-indigo-300 highlight-variant-1'
+                        : idx % 3 === 1
+                        ? 'highlight-emerald-400 highlight-variant-17'
+                        : 'highlight-sky-400 highlight-variant-9'
                     )}
                   >
                     {/* {item.name} */}
-                    {'پست: '}
+                    <ExternalLink className="mix-blend-multiply " />
+                    {/* {'پست: '} */}
                     {item.title}
                   </div>
                   {/* <span

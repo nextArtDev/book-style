@@ -12,7 +12,12 @@ interface pageProps {
 const page: FC<pageProps> = async ({ params: { billboardId } }) => {
   const categories = await getCategoryByBillboardId({ billboardId })
   // console.log(categories)
-  if (!categories) return notFound()
+  if (!categories?.length)
+    return (
+      <p className="text-2xl text-center pt-10">
+        {'هنوز محصولی اضافه نشده است.'}
+      </p>
+    )
 
   const tabs = categories?.map((category, i) => ({
     title: category.name,

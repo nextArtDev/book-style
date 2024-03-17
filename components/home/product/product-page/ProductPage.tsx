@@ -1,6 +1,6 @@
 import FlipCover from '@/components/home/product/3d-cover/FlipCover'
 import { SingleProductFullStructure } from '@/lib/queries/home/products'
-import { cn, formatter } from '@/lib/utils'
+import { cn, formatter, getRandomNaturalNumber } from '@/lib/utils'
 import Link from 'next/link'
 
 import React, { FC } from 'react'
@@ -31,6 +31,8 @@ const ProductPage: FC<ProductPageProps> = ({
   beforeRated,
   rate,
 }) => {
+  const randomVariant = getRandomNaturalNumber()
+  const highlightVariantClass = `highlight-variant-${randomVariant}`
   return (
     <section className="max-w-7xl pt-8 mx-auto mt-8">
       <article className="grid gap-2 md:gap-4 grid-cols-1 place-items-center md:grid-cols-2 lg:grid-cols-3">
@@ -46,8 +48,12 @@ const ProductPage: FC<ProductPageProps> = ({
           )}
         </div>
         <div className="flex flex-col gap-y-4 justify-center items-start pr-8 md:pr-0 ">
-          <p className="text-lg font-bold md:text-2xl ">{product.title}</p>
-          <p className="text-sm max-w-48 text-muted-foreground font-semibold md:text-base ">
+          <p
+            className={`text-lg font-bold md:text-2xl highlight highlight-red-400 ${highlightVariantClass}`}
+          >
+            {product.title}
+          </p>
+          <p className="text-sm max-w-48 text-muted-foreground font-semibold md:text-base highlight highlight-yellow-400 ${highlightVariantClass}">
             {product.subTitle}
           </p>
           <div className="flex items-center gap-2">

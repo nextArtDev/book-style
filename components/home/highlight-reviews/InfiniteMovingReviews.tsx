@@ -9,6 +9,7 @@ import UserAvatar from '@/components/shared/Avatar'
 import { StarIcon } from 'lucide-react'
 import { Rating } from '@mui/material'
 import Link from 'next/link'
+import { getTimestamp } from '@/lib/socialUtils'
 
 export const InfiniteMovingReviews = ({
   items,
@@ -120,6 +121,29 @@ export const InfiniteMovingReviews = ({
             >
               <div className={style.textarea}>
                 <blockquote dir="rtl" className={cn('text-right')}>
+                  <div className="w-full text-center">
+                    <Rating
+                      dir="ltr"
+                      value={item.rating}
+                      readOnly
+                      precision={0.5}
+                      defaultValue={5}
+                      icon={
+                        <StarIcon
+                          fontSize="inherit"
+                          className={cn(
+                            'mt-4 text-center text-yellow-500 fill-yellow-400 h-5 w-5 flex-shrink-0'
+                          )}
+                        />
+                      }
+                      emptyIcon={
+                        <StarIcon
+                          fontSize="inherit"
+                          className="text-gray-200 h-5 w-5 flex-shrink-0"
+                        />
+                      }
+                    />
+                  </div>
                   <div className="absolute w-full h-full top-0 left-0 ">
                     <div
                       aria-hidden="true"
@@ -133,19 +157,25 @@ export const InfiniteMovingReviews = ({
                     >
                       {item.comment}
                     </span>
-                    <div className="relative z-20  flex flex-row items-center">
-                      <div className="flex flex-col gap-1">
+                    <div className=" pt-6 relative z-20  flex flex-row items-center justify-center ">
+                      <div className=" flex flex-col gap-1">
                         <span
                           className={cn(
                             'flex gap-2 items-center  pr-4  font-normal',
                             nameClassName
                           )}
                         >
-                          <UserAvatar
-                            alt={item.User?.name}
-                            src={item.User?.image?.url}
-                          />
-                          {/* {item.name} */}
+                          <div className="flex gap-0.5 items-center justify-center">
+                            <UserAvatar
+                              alt={item.User?.name}
+                              src={item.User?.image?.url}
+                            />
+                            <p className="highlight highlight-yellow-400 flex-end text-xs md:text-sm ">
+                              {`${item.User?.name} . ${getTimestamp(
+                                new Date(item.created_at)
+                              )}`}
+                            </p>
+                          </div>
                           {/* </span>
                         <span
                           className={cn(
@@ -153,7 +183,7 @@ export const InfiniteMovingReviews = ({
                             nameClassName
                           )}
                         > */}
-                          <Rating
+                          {/* <Rating
                             dir="ltr"
                             value={item.rating}
                             readOnly
@@ -173,7 +203,7 @@ export const InfiniteMovingReviews = ({
                                 className="text-gray-200 h-5 w-5 flex-shrink-0"
                               />
                             }
-                          />
+                          /> */}
                           {/* {item.title} */}
                         </span>
                       </div>
