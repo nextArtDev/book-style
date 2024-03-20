@@ -6,50 +6,20 @@ import { Button } from '@/components/ui/button'
 import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/drawer'
 import Image from 'next/image'
 import GlobalSearch from '../social/search/GlobalSearch'
+import { cn } from '@/lib/utils'
 
-const data = [
-  {
-    goal: 400,
-  },
-  {
-    goal: 300,
-  },
-  {
-    goal: 200,
-  },
-  {
-    goal: 300,
-  },
-  {
-    goal: 200,
-  },
-  {
-    goal: 278,
-  },
-  {
-    goal: 189,
-  },
-  {
-    goal: 239,
-  },
-  {
-    goal: 300,
-  },
-  {
-    goal: 200,
-  },
-  {
-    goal: 278,
-  },
-  {
-    goal: 189,
-  },
-  {
-    goal: 349,
-  },
-]
+interface GlobalSearchDriver {
+  className?: string
+  variant?:
+    | 'default'
+    | 'destructive'
+    | 'outline'
+    | 'secondary'
+    | 'ghost'
+    | 'link'
+}
 
-export function GlobalSearchDriver() {
+export function GlobalSearchDriver({ className, variant }: GlobalSearchDriver) {
   // const [goal, setGoal] = React.useState(350)
 
   // function onClick(adjustment: number) {
@@ -60,7 +30,7 @@ export function GlobalSearchDriver() {
     <Drawer>
       <DrawerTrigger asChild>
         <Button
-          variant="ghost"
+          variant={variant || 'ghost'}
           className="relative bg-transparent outline-none  "
         >
           <Image
@@ -71,7 +41,12 @@ export function GlobalSearchDriver() {
           />
         </Button>
       </DrawerTrigger>
-      <DrawerContent className="bg-black/5 dark:bg-white/20 backdrop-blur-sm">
+      <DrawerContent
+        className={cn(
+          'bg-black/5 dark:bg-white/20 backdrop-blur-sm',
+          className
+        )}
+      >
         {/* <div className="mx-auto w-full max-w-sm">
           <DrawerHeader>
             <DrawerTitle>Move Goal</DrawerTitle>

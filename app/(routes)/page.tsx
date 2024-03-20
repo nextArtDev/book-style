@@ -15,10 +15,16 @@ import { getPopularProducts } from '@/lib/queries/home/products'
 import CarouselFlipBook from '@/components/home/CarouselFlipBook'
 
 export default async function Home() {
-  const categories = await getAllCategories({})
-  const billboards = await getAllBillboardsWithCategories()
-  const hotQuotes = await getHotQuestions()
-  const hotReviews = await getHotReviews()
+  // const categories =  getAllCategories({})
+  // const billboards =  getAllBillboardsWithCategories()
+  // const hotQuotes =  getHotQuestions()
+  // const hotReviews =  getHotReviews()
+  const [categories, billboards, hotQuotes, hotReviews] = await Promise.all([
+    getAllCategories({}),
+    getAllBillboardsWithCategories(),
+    getHotQuestions(),
+    getHotReviews(),
+  ])
   if (!billboards)
     return (
       <p className="w-full h-full flex items-center justify-center text-3xl text-center ">

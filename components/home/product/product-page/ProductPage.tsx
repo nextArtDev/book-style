@@ -49,7 +49,7 @@ const ProductPage: FC<ProductPageProps> = ({
         </div>
         <div className="flex flex-col gap-y-4 justify-center items-start pr-8 md:pr-0 ">
           <p
-            className={`text-lg font-bold md:text-2xl highlight highlight-red-400 ${highlightVariantClass}`}
+            className={`text-lg font-bold md:text-2xl highlight highlight-red-400 p-1.5 ${highlightVariantClass}`}
           >
             {product.title}
           </p>

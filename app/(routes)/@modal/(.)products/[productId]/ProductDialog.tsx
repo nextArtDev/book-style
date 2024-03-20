@@ -1,5 +1,5 @@
 'use client'
-import { FC } from 'react'
+import { FC, useEffect, useState } from 'react'
 
 import { useRouter } from 'next/navigation'
 import { Dialog, DialogClose, DialogContent } from '@/components/ui/dialog'
@@ -21,11 +21,16 @@ interface pageProps {
 
 const ProductDialog: FC<pageProps> = ({ product, rate }) => {
   const router = useRouter()
+  const [highlightVariant, setHighlighVariant] = useState(1)
   const onDismiss = () => {
     router.back()
   }
-  const randomVariant = getRandomNaturalNumber()
-  const highlightVariantClass = `highlight-variant-${randomVariant}`
+  useEffect(() => {
+    const randomVariant = getRandomNaturalNumber()
+    setHighlighVariant(randomVariant)
+  }, [])
+  const highlightVariantClass = `highlight-variant-${highlightVariant}`
+
   return (
     <div>
       <Dialog
@@ -42,7 +47,9 @@ const ProductDialog: FC<pageProps> = ({ product, rate }) => {
             className="max-h-full text-xs  text-center "
           >
             <div className="flex flex-col space-y-4 p-2 pt-4 items-center ">
-              <p className=" font-bold text-sm md:text-base highlight highlight-red-400 ${highlightVariantClass} px-1">
+              <p
+                className={`font-bold text-sm md:text-base highlight highlight-red-400 highlight-variant-${highlightVariant} py-2 px-2`}
+              >
                 {product.title}
               </p>
               <p className="text-xs md:text-sm">{product.subTitle}</p>

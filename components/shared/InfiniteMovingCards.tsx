@@ -139,14 +139,11 @@ export const InfiniteMovingCards = ({
                 )}
                 dangerouslySetInnerHTML={{ __html: item.content }}
               />
-              <div
-                dir="rtl"
-                className="relative z-20 mt-6 flex flex-row items-center"
-              >
+              <div dir="rtl" className="flex flex-row items-center">
                 <div className="flex flex-col gap-1">
                   <div
                     className={cn(
-                      'highlight w-full px-4 py-3 mt-[2.9vh] text-xs font-semibold md:text-sm flex justify-center gap-1 items-center mx-8  ',
+                      'truncate w-[50%]  highlight px-1 py-1  text-xs font-semibold md:text-sm flex justify-center gap-1 items-center mx-8  opacity-90',
                       nameClassName,
                       idx % 3 === 0
                         ? 'highlight-indigo-500 dark:highlight-indigo-300 highlight-variant-1'
@@ -156,7 +153,7 @@ export const InfiniteMovingCards = ({
                     )}
                   >
                     {/* {item.name} */}
-                    <ExternalLink className="mix-blend-multiply " />
+                    <ExternalLink className="" />
                     {/* {'پست: '} */}
                     {item.title}
                   </div>
