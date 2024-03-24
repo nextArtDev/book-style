@@ -1,7 +1,11 @@
 'use client'
 
-import { ClipLoader } from 'react-spinners'
+import { HashLoader } from 'react-spinners'
 
 export const Loader = () => {
-  return <ClipLoader color="#3498db" size={50} />
+  return (
+    <div className="z-30 absolute inset-0 w-full h-full flex items-center justify-center">
+      <HashLoader className="" color="#00000045" size={80} />
+    </div>
+  )
 }
