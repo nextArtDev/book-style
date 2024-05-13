@@ -145,7 +145,7 @@ export async function createProduct(
         imageIds.push(res.imageId)
       }
     }
-    console.log(imageIds)
+    // console.log(imageIds)
     // console.log('data', result.data)
     product = await prisma.product.create({
       data: {

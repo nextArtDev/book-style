@@ -22,16 +22,26 @@ const FeaturedProducts: FC<FeaturedProductsProps> = async ({}) => {
   }))
   return (
     <div className="">
-      <HorizontalScrollCarousel
-        cards={cards}
-        rtl={true}
-        className="overflow-x-hidden "
-      />
-      <HorizontalScrollCarousel
-        cards={cards}
-        rtl={false}
-        className="overflow-x-hidden "
-      />
+      <div className="my-10 flex flex-col ">
+        <p className="mr-8 mt-4 -mb-10 font-bold tex-lg md:text-2xl highlight-variant-4 highlight highlight-green-400 w-fit p-2 ">
+          محبوب‌ترین‌ها
+        </p>
+        <HorizontalScrollCarousel
+          cards={cards}
+          rtl={true}
+          className="overflow-x-hidden "
+        />
+      </div>
+      <div className="my-10 flex flex-col ">
+        <p className="mr-8 mt-4 -mb-10 font-bold tex-lg md:text-2xl highlight-variant-3 highlight highlight-red-400 w-fit p-2">
+          پرفروش‌ترین‌ها
+        </p>
+        <HorizontalScrollCarousel
+          cards={cards}
+          rtl={false}
+          className="overflow-x-hidden "
+        />
+      </div>
     </div>
   )
 }

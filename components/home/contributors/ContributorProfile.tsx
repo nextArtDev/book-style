@@ -86,16 +86,17 @@ const ContributorProfile: FC<ContributorProfileProps> = ({
           )}
         </div>
         <div className="">
-          <span>
-            {' '}
-            <TypewriterEffectSmooth
+          <span className="text-base font-semibold sm:text-xl text-black mt-4 mb-2 dark:text-neutral-200">
+            {contributor.name}
+            {/* <TypewriterEffectSmooth
               words={createWordObjectsFromSentence(contributor.name)}
-            />
+            /> */}
           </span>
           <p className="text-base sm:text-xl text-black mt-4 mb-2 dark:text-neutral-200">
-            <TypewriterEffectSmooth
+            {/* <TypewriterEffectSmooth
               words={createWordObjectsFromSentence(workWords)}
-            />
+            /> */}
+            {workWords}
           </p>
           <p className="text-sm text-neutral-600 dark:text-neutral-400">
             {contributor.bio}

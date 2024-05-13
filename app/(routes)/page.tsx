@@ -41,14 +41,24 @@ export default async function Home() {
       <div className="-mt-20">
         <HeroParallax categories={categories} />
       </div>
-      <Quotes quotes={hotQuotes} />
       {/* <div dir="ltr" className="w-[94vw] overflow-x-hidden">
         <SwipeCarousel categories={categories} />
       </div> */}
       <CarouselFlipBook categories={categories} />
       <FeaturedProducts />
       <CardParallax billboards={billboards} />
-      <HighlightReviews hotReviews={hotReviews} />
+      <div className="mt-12 flex flex-col ">
+        <p className="mr-8 mt-4 -mb-16 font-bold tex-lg md:text-2xl highlight-variant-4 highlight highlight-green-400 w-fit p-2 ">
+          مطالب پربازخورد شبکه‌اجتماعی
+        </p>
+        <Quotes quotes={hotQuotes} />
+      </div>
+      <div className="mt-10 flex flex-col ">
+        <p className="mr-8 mt-4  -mb-16 font-bold tex-lg md:text-2xl highlight-variant-4 highlight highlight-red-400 w-fit p-2 ">
+          نظرات کاربران
+        </p>
+        <HighlightReviews hotReviews={hotReviews} />
+      </div>
     </main>
   )
 }

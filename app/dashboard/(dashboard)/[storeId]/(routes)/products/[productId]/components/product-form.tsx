@@ -420,8 +420,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                   type: 'custom',
                   message: res?.errors?.isFeatured?.join(' و '),
                 })
-              }
-              if (res?.errors?.isArchived) {
+              } else if (res?.errors?.isArchived) {
                 form.setError('isArchived', {
                   type: 'custom',
                   message: res?.errors.isArchived?.join(' و '),
