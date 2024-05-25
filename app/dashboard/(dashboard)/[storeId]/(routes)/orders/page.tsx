@@ -5,8 +5,20 @@ import { formatter } from '@/lib/utils'
 import { OrderColumn } from './components/columns'
 import { OrderClient } from './components/client'
 import { prisma } from '@/lib/prisma'
+import Pagination from '@/components/social/Pagination'
 
-const OrdersPage = async ({ params }: { params: { storeId: string } }) => {
+const OrdersPage = async ({
+  params,
+  searchParams,
+}: {
+  params: { storeId: string }
+  searchParams: { [key: string]: string | undefined }
+}) => {
+  const pageSize = 20
+
+  const page = searchParams.page ? +searchParams.page : 1
+  const skipAmount = (page - 1) * pageSize
+
   const orders = await prisma.order.findMany({
     where: {
       storeId: params.storeId,
@@ -21,7 +33,14 @@ const OrdersPage = async ({ params }: { params: { storeId: string } }) => {
     orderBy: {
       createdAt: 'desc',
     },
+    skip: skipAmount,
+    take: pageSize,
   })
+
+  const totalOrders = await prisma.order.count()
+
+  // Calculate if there are more questions to be fetched
+  const isNext = totalOrders > skipAmount + orders.length
 
   const formattedOrders: OrderColumn[] = orders.map((item) => ({
     id: item.id,
@@ -42,7 +61,12 @@ const OrdersPage = async ({ params }: { params: { storeId: string } }) => {
   return (
     <div className="flex-col">
       <div className="flex-1 space-y-4 p-8 pt-6">
-        <OrderClient data={formattedOrders} />
+        <OrderClient
+          data={formattedOrders}
+          pageNumber={searchParams?.page ? +searchParams.page : 1}
+          isNext={isNext}
+          totalOrders={totalOrders}
+        />
       </div>
     </div>
   )

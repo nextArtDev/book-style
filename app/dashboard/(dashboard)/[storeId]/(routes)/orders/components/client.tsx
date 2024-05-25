@@ -8,17 +8,31 @@ import { DataTable } from '@/components/dashboard/DataTable'
 
 interface OrderClientProps {
   data: OrderColumn[]
+  pageNumber: number
+  isNext: boolean
+  totalOrders: number
 }
 
-export const OrderClient: React.FC<OrderClientProps> = ({ data }) => {
+export const OrderClient: React.FC<OrderClientProps> = ({
+  data,
+  pageNumber,
+  isNext,
+  totalOrders,
+}) => {
   return (
     <>
       <Heading
-        title={`سفارشات (${data.length})`}
+        title={`سفارشات (${totalOrders})`}
         description="سفارشات فروشگاه را مدیریت کنید."
       />
       <Separator />
-      <DataTable searchKey="products" columns={columns} data={data} />
+      <DataTable
+        searchKey="products"
+        columns={columns}
+        data={data}
+        pageNumber={pageNumber}
+        isNext={isNext}
+      />
     </>
   )
 }

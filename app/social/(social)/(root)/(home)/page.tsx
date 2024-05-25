@@ -31,9 +31,8 @@ import { getQuestions } from '@/lib/actions/social/question.action'
 // import SearchIcon from '/public/assets/icons/search.svg'
 
 export const metadata: Metadata = {
-  title: 'DevFlow',
-  description:
-    'A community-driven platform for asking and answering programming questions',
+  title: 'شبکه اجتماعی',
+  description: 'انتشار نظرات و دیدگاهها راجع به کتاب',
 }
 
 // const questions = [

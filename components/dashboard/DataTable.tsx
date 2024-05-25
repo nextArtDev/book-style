@@ -21,24 +21,29 @@ import {
 } from '@/components/ui/table'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import Pagination from '../social/Pagination'
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
   searchKey: string
+  pageNumber: number
+  isNext: boolean
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
   searchKey,
+  pageNumber,
+  isNext,
 }: DataTableProps<TData, TValue>) {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
+    // getPaginationRowModel: getPaginationRowModel(),
     onColumnFiltersChange: setColumnFilters,
     getFilteredRowModel: getFilteredRowModel(),
     state: {
@@ -108,7 +113,7 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-      <div className="flex items-center justify-start gap-4 py-4">
+      {/* <div className="flex items-center justify-start gap-4 py-4">
         <Button
           variant="outline"
           size="sm"
@@ -125,6 +130,9 @@ export function DataTable<TData, TValue>({
         >
           بعدی
         </Button>
+      </div> */}
+      <div className="flex items-center justify-start gap-4 py-8">
+        <Pagination pageNumber={pageNumber} isNext={isNext} />
       </div>
     </div>
   )
